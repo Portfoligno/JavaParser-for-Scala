@@ -3,7 +3,6 @@ package declaration
 
 import com.github.javaparser.ast.body.AnnotationDeclaration
 import com.github.javaparser.ast.expr.{AnnotationExpr, SimpleName}
-import com.github.javaparser.ast.{Modifier, NodeList}
 import jp4s.utility.JavaList
 
 object Annotation {
