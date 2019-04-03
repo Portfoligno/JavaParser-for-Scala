@@ -10,9 +10,10 @@ repositories {
 }
 dependencies {
   scalaCompilerPlugin("org.scalamacros:paradise_2.12.8:2.1.1")
-  implementation("org.scala-lang:scala-library:2.12.8")
+  api("org.scala-lang:scala-library:2.12.8")
 
-  implementation("com.github.javaparser:javaparser-core:3.13.5")
+  api("com.github.javaparser:javaparser-core:3.13.5")
+  api("eu.timepit:refined_2.12:0.9.4")
 }
 
 tasks.withType<ScalaCompile> {
