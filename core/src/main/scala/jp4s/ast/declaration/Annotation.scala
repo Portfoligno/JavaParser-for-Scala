@@ -1,8 +1,9 @@
-package jp4s.ast.declaration
+package jp4s.ast
+package declaration
 
-import com.github.javaparser.ast.Modifier
 import com.github.javaparser.ast.body.AnnotationDeclaration
 import com.github.javaparser.ast.expr.{AnnotationExpr, SimpleName}
+import com.github.javaparser.ast.{Modifier, NodeList}
 import jp4s.utility.JavaList
 
 object Annotation {
@@ -18,4 +19,12 @@ object Annotation {
       name,
       nodes(members)
     )
+
+  def unapply(a: Annotation): Option[(
+    NodeList[Modifier],
+    NodeList[AnnotationExpr],
+    SimpleName,
+    NodeList[Body]
+  )] =
+    Some((a.getModifiers, a.getAnnotations, a.getName, a.getMembers))
 }
