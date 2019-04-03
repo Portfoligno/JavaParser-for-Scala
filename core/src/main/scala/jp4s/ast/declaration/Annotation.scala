@@ -2,13 +2,13 @@ package jp4s.ast
 package declaration
 
 import com.github.javaparser.ast.body.AnnotationDeclaration
-import com.github.javaparser.ast.expr.{AnnotationExpr, SimpleName}
+import com.github.javaparser.ast.expr.SimpleName
 import jp4s.utility.JavaList
 
 object Annotation {
   def apply(
     modifiers: JavaList[Modifier],
-    annotations: JavaList[AnnotationExpr],
+    annotations: JavaList[expression.Annotation],
     name: SimpleName,
     members: JavaList[Body]
   ): Annotation =
@@ -21,7 +21,7 @@ object Annotation {
 
   def unapply(a: Annotation): Option[(
     NodeList[Modifier],
-    NodeList[AnnotationExpr],
+    NodeList[expression.Annotation],
     SimpleName,
     NodeList[Body]
   )] =
