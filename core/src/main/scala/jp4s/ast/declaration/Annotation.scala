@@ -1,7 +1,6 @@
 package jp4s.ast
 package declaration
 
-import com.github.javaparser.ast.body.AnnotationDeclaration
 import jp4s.ast.name.Simple
 import jp4s.utility.JavaList
 
@@ -12,7 +11,7 @@ object Annotation {
     name: Simple,
     members: JavaList[Body]
   ): Annotation =
-    new AnnotationDeclaration(
+    new Annotation(
       nodes(modifiers),
       nodes(annotations),
       name,
