@@ -1,7 +1,7 @@
 package jp4s.ast
 package declaration
 
-import jp4s.ast.name.Simple
+import jp4s.ast.expression.SimpleName
 import jp4s.utility.JavaList
 
 object Annotation {
@@ -12,10 +12,10 @@ object Annotation {
     members: JavaList[Body]
   ): Annotation =
     new Annotation(
-      nodes(modifiers),
-      nodes(annotations),
-      Simple(name),
-      nodes(members)
+      nodeList(modifiers),
+      nodeList(annotations),
+      SimpleName(name),
+      nodeList(members)
     )
 
   def unapply(a: Annotation): Some[(
@@ -24,5 +24,5 @@ object Annotation {
     Identifier,
     NodeList[Body]
   )] =
-    Some((a.getModifiers, a.getAnnotations, Simple.identifier(a.getName), a.getMembers))
+    Some((a.getModifiers, a.getAnnotations, identifier(a.getName), a.getMembers))
 }

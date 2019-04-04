@@ -1,7 +1,7 @@
 package jp4s.ast
 package declaration
 
-import jp4s.ast.name.Simple
+import jp4s.ast.expression.SimpleName
 import jp4s.utility.{JavaList, Optional}
 
 object AnnotationMember {
@@ -9,14 +9,14 @@ object AnnotationMember {
     modifiers: JavaList[Modifier],
     annotations: JavaList[expression.Annotation],
     `type`: Type,
-    name: Simple,
+    name: Identifier,
     defaultValue: Optional[Expression]
   ): AnnotationMember =
     new AnnotationMember(
-      nodes(modifiers),
-      nodes(annotations),
+      nodeList(modifiers),
+      nodeList(annotations),
       `type`,
-      name,
+      SimpleName(name),
       defaultValue.orElse(null)
     )
 
@@ -24,8 +24,8 @@ object AnnotationMember {
     NodeList[Modifier],
     NodeList[expression.Annotation],
     Type,
-    Simple,
+    Identifier,
     Optional[Expression])
   ] =
-    Some((m.getModifiers, m.getAnnotations, m.getType, m.getName, m.getDefaultValue))
+    Some((m.getModifiers, m.getAnnotations, m.getType, identifier(m.getName), m.getDefaultValue))
 }

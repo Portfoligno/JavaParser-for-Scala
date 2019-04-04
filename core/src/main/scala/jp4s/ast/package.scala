@@ -4,6 +4,7 @@ import eu.timepit.refined.api.{Refined, RefinedTypeOps}
 import eu.timepit.refined.boolean.And
 import eu.timepit.refined.char.{Letter, LetterOrDigit}
 import eu.timepit.refined.collection.{Head, Tail}
+import jp4s.ast.expression.SimpleName
 import jp4s.utility.JavaList
 
 import scala.language.implicitConversions
@@ -36,7 +37,11 @@ package object ast {
 
 
   private[ast]
-  def nodes[A <: Node](javaList: JavaList[A]): NodeList[A] =
+  def identifier(s: SimpleName): Identifier =
+    Identifier.unsafeFrom(s.getIdentifier)
+
+  private[ast]
+  def nodeList[A <: Node](javaList: JavaList[A]): NodeList[A] =
     javaList match {
       case nodeList: NodeList[A] =>
         nodeList

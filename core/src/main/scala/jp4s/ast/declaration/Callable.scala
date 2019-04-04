@@ -1,9 +1,8 @@
-package jp4s.ast.declaration
+package jp4s.ast
+package declaration
 
 import com.github.javaparser.ast.`type`.{ReferenceType, TypeParameter}
 import com.github.javaparser.ast.body.{Parameter, ReceiverParameter}
-import jp4s.ast.name.Simple
-import jp4s.ast.{Identifier, Modifier, NodeList, expression}
 import jp4s.utility.Optional
 
 object Callable {
@@ -20,7 +19,7 @@ object Callable {
       c.getModifiers,
       c.getAnnotations,
       c.getTypeParameters,
-      Simple.identifier(c.getName),
+      identifier(c.getName),
       c.getParameters,
       c.getThrownExceptions,
       c.getReceiverParameter
