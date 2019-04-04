@@ -5,6 +5,8 @@ import jp4s.utility.JavaList
 package object ast {
   type Modifier = com.github.javaparser.ast.Modifier
 
+  type Type = com.github.javaparser.ast.`type`.Type
+
   type Node = com.github.javaparser.ast.Node
 
   type NodeList[A <: Node] = com.github.javaparser.ast.NodeList[A]
