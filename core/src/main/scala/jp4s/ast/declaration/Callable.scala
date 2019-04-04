@@ -1,11 +1,10 @@
 package jp4s.ast.declaration
 
-import java.util.Optional
-
 import com.github.javaparser.ast.`type`.{ReferenceType, TypeParameter}
 import com.github.javaparser.ast.body.{Parameter, ReceiverParameter}
 import jp4s.ast.name.Simple
 import jp4s.ast.{Identifier, Modifier, NodeList, expression}
+import jp4s.utility.Optional
 
 object Callable {
   def unapply(c: Callable): Some[(

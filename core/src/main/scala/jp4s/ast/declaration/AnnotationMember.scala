@@ -1,10 +1,8 @@
 package jp4s.ast
 package declaration
 
-import java.util.Optional
-
 import jp4s.ast.name.Simple
-import jp4s.utility.JavaList
+import jp4s.utility.{JavaList, Optional}
 
 object AnnotationMember {
   def apply(
