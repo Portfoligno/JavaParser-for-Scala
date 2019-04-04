@@ -11,6 +11,7 @@ package object declaration {
   type Constructor = ConstructorDeclaration
   type EnumConstant = EnumConstantDeclaration
   type Fields = FieldDeclaration
+  type Initializer = InitializerDeclaration
 
   type Parameter = com.github.javaparser.ast.body.Parameter
 
