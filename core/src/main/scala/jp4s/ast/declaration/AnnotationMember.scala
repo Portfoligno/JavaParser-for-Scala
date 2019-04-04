@@ -22,7 +22,7 @@ object AnnotationMember {
       defaultValue.orElse(null)
     )
 
-  def unapply(m: AnnotationMember): Option[(
+  def unapply(m: AnnotationMember): Some[(
     NodeList[Modifier],
     NodeList[expression.Annotation],
     Type,

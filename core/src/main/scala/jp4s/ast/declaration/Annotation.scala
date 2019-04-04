@@ -8,21 +8,21 @@ object Annotation {
   def apply(
     modifiers: JavaList[Modifier],
     annotations: JavaList[expression.Annotation],
-    name: Simple,
+    name: Identifier,
     members: JavaList[Body]
   ): Annotation =
     new Annotation(
       nodes(modifiers),
       nodes(annotations),
-      name,
+      Simple(name),
       nodes(members)
     )
 
-  def unapply(a: Annotation): Option[(
+  def unapply(a: Annotation): Some[(
     NodeList[Modifier],
     NodeList[expression.Annotation],
-    Simple,
+    Identifier,
     NodeList[Body]
   )] =
-    Some((a.getModifiers, a.getAnnotations, a.getName, a.getMembers))
+    Some((a.getModifiers, a.getAnnotations, Simple.identifier(a.getName), a.getMembers))
 }
