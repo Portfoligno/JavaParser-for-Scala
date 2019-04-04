@@ -1,7 +1,6 @@
 package jp4s.ast
 package `type`
 
-import com.github.javaparser.ast.`type`.ClassOrInterfaceType
 import jp4s.ast.expression.{Annotation, SimpleName}
 import jp4s.utility.JavaList
 
