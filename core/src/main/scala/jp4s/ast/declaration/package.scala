@@ -10,7 +10,7 @@ package object declaration {
   type ClassOrInterface = ClassOrInterfaceDeclaration
   type Constructor = ConstructorDeclaration
   type EnumConstant = EnumConstantDeclaration
-  type Field = FieldDeclaration
+  type Fields = FieldDeclaration
 
   type Parameter = com.github.javaparser.ast.body.Parameter
 
