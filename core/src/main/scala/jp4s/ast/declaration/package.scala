@@ -7,6 +7,7 @@ package object declaration {
   type AnnotationMember = AnnotationMemberDeclaration
   type Body = BodyDeclaration[_ <: BodyDeclaration[_]]
   type Callable = CallableDeclaration[_ <: CallableDeclaration[_]]
+  type ClassOrInterface = ClassOrInterfaceDeclaration
 
   type Parameter = com.github.javaparser.ast.body.Parameter
 
