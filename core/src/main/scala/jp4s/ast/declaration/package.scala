@@ -5,6 +5,5 @@ import com.github.javaparser.ast.body.{AnnotationDeclaration, AnnotationMemberDe
 package object declaration {
   type Annotation = AnnotationDeclaration
   type AnnotationMember = AnnotationMemberDeclaration
-
   type Body = BodyDeclaration[_ <: BodyDeclaration[_]]
 }
