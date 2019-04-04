@@ -1,0 +1,18 @@
+package jp4s.ast
+package `type`
+
+import com.github.javaparser.ast.`type`.ClassOrInterfaceType
+import jp4s.ast.expression.{Annotation, SimpleName}
+import jp4s.utility.JavaList
+
+object TypeParameter {
+  def apply(
+    name: Identifier,
+    typeBound: JavaList[ClassOrInterfaceType],
+    annotations: JavaList[Annotation]
+  ): TypeParameter =
+    new TypeParameter(SimpleName(name), nodeList(typeBound), nodeList(annotations))
+
+  def unapply(p: TypeParameter): Option[(Identifier, NodeList[ClassOrInterfaceType], JavaList[Annotation])] =
+    Some((identifier(p.getName), p.getTypeBound, p.getAnnotations))
+}

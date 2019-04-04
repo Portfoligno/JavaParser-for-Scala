@@ -1,8 +1,9 @@
 package jp4s.ast
 package declaration
 
-import com.github.javaparser.ast.`type`.{ReferenceType, TypeParameter}
+import com.github.javaparser.ast.`type`.ReferenceType
 import com.github.javaparser.ast.body.{Parameter, ReceiverParameter}
+import jp4s.ast.`type`.TypeParameter
 import jp4s.utility.Optional
 
 object Callable {
