@@ -3,7 +3,6 @@ package declaration
 
 import java.util.Optional
 
-import com.github.javaparser.ast.expr.Expression
 import jp4s.ast.name.Simple
 import jp4s.utility.JavaList
 

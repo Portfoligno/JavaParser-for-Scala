@@ -3,6 +3,8 @@ package jp4s
 import jp4s.utility.JavaList
 
 package object ast {
+  type Expression = com.github.javaparser.ast.expr.Expression
+
   type Modifier = com.github.javaparser.ast.Modifier
 
   type Type = com.github.javaparser.ast.`type`.Type
