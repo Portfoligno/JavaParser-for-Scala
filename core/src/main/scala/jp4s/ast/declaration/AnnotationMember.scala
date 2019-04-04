@@ -21,8 +21,8 @@ object AnnotationMember {
     )
 
   def unapply(m: AnnotationMember): Some[(
-    NodeList[Modifier],
-    NodeList[Annotation],
+    JavaList[Modifier],
+    JavaList[Annotation],
     Type,
     Identifier,
     Optional[Expression])

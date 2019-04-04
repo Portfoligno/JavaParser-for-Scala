@@ -3,16 +3,16 @@ package declaration
 
 import jp4s.ast.`type`.{ReferenceType, TypeParameter}
 import jp4s.ast.expression.Annotation
-import jp4s.utility.Optional
+import jp4s.utility.{JavaList, Optional}
 
 object Callable {
   def unapply(c: Callable): Some[(
-    NodeList[Modifier],
-    NodeList[Annotation],
-    NodeList[TypeParameter],
+    JavaList[Modifier],
+    JavaList[Annotation],
+    JavaList[TypeParameter],
     Identifier,
-    NodeList[Parameter],
-    NodeList[ReferenceType],
+    JavaList[Parameter],
+    JavaList[ReferenceType],
     Optional[ReceiverParameter]
   )] =
     Some((

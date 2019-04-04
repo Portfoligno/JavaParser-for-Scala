@@ -19,10 +19,10 @@ object AnnotationInterface {
     )
 
   def unapply(a: AnnotationInterface): Some[(
-    NodeList[Modifier],
-    NodeList[Annotation],
+    JavaList[Modifier],
+    JavaList[Annotation],
     Identifier,
-    NodeList[Body]
+    JavaList[Body]
   )] =
     Some((a.getModifiers, a.getAnnotations, identifier(a.getName), a.getMembers))
 }

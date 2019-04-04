@@ -1,5 +1,6 @@
 package jp4s
 
+import com.github.javaparser.ast.NodeList
 import eu.timepit.refined.api.{Refined, RefinedTypeOps}
 import eu.timepit.refined.boolean.And
 import eu.timepit.refined.char.{Letter, LetterOrDigit}
@@ -21,8 +22,6 @@ package object ast {
   type Type = com.github.javaparser.ast.`type`.Type
 
   type Node = com.github.javaparser.ast.Node
-
-  type NodeList[A <: Node] = com.github.javaparser.ast.NodeList[A]
 
 
 
