@@ -12,6 +12,7 @@ package object declaration {
   type EnumConstant = EnumConstantDeclaration
   type Fields = FieldDeclaration
   type Initializer = InitializerDeclaration
+  type Method = MethodDeclaration
 
   type Parameter = com.github.javaparser.ast.body.Parameter
 
