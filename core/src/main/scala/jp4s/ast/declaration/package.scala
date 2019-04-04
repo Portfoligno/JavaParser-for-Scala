@@ -9,6 +9,7 @@ package object declaration {
   type Callable = CallableDeclaration[_ <: CallableDeclaration[_]]
   type ClassOrInterface = ClassOrInterfaceDeclaration
   type Constructor = ConstructorDeclaration
+  type EnumConstant = EnumConstantDeclaration
 
   type Parameter = com.github.javaparser.ast.body.Parameter
 
