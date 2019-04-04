@@ -5,7 +5,6 @@ import eu.timepit.refined.api.{Refined, RefinedTypeOps}
 import eu.timepit.refined.boolean.And
 import eu.timepit.refined.char.{Letter, LetterOrDigit}
 import eu.timepit.refined.collection.{Head, Tail}
-import jp4s.ast.expression.SimpleName
 import jp4s.utility.JavaList
 
 import scala.language.implicitConversions
@@ -18,6 +17,8 @@ package object ast {
   type Expression = com.github.javaparser.ast.expr.Expression
 
   type Modifier = com.github.javaparser.ast.Modifier
+
+  type SimpleName = com.github.javaparser.ast.expr.SimpleName
 
   type Type = com.github.javaparser.ast.`type`.Type
 

@@ -1,5 +1,4 @@
 package jp4s.ast
-package expression
 
 object SimpleName {
   def apply(identifier: Identifier): SimpleName =

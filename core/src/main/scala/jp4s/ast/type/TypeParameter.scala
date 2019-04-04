@@ -1,7 +1,7 @@
 package jp4s.ast
 package `type`
 
-import jp4s.ast.expression.{Annotation, SimpleName}
+import jp4s.ast.expression.Annotation
 import jp4s.utility.JavaList
 
 object TypeParameter {

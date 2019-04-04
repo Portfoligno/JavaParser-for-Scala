@@ -2,7 +2,7 @@ package jp4s.ast
 package declaration
 
 import jp4s.ast.`type`.{ReferenceType, TypeParameter}
-import jp4s.ast.expression.{Annotation, SimpleName}
+import jp4s.ast.expression.Annotation
 import jp4s.ast.statement.Block
 import jp4s.utility.{JavaList, Optional}
 
