@@ -25,7 +25,7 @@ object AnnotationMember {
     JavaList[Annotation],
     Type,
     Identifier,
-    Optional[Expression])
-  ] =
+    Optional[Expression]
+  )] =
     Some((m.getModifiers, m.getAnnotations, m.getType, identifier(m.getName), m.getDefaultValue))
 }
