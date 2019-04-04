@@ -2,12 +2,13 @@ package jp4s.ast
 package declaration
 
 import jp4s.ast.`type`.{ReferenceType, TypeParameter}
+import jp4s.ast.expression.Annotation
 import jp4s.utility.Optional
 
 object Callable {
   def unapply(c: Callable): Some[(
     NodeList[Modifier],
-    NodeList[expression.Annotation],
+    NodeList[Annotation],
     NodeList[TypeParameter],
     Identifier,
     NodeList[Parameter],

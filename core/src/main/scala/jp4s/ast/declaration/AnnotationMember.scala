@@ -1,13 +1,13 @@
 package jp4s.ast
 package declaration
 
-import jp4s.ast.expression.SimpleName
+import jp4s.ast.expression.{Annotation, SimpleName}
 import jp4s.utility.{JavaList, Optional}
 
 object AnnotationMember {
   def apply(
     modifiers: JavaList[Modifier],
-    annotations: JavaList[expression.Annotation],
+    annotations: JavaList[Annotation],
     `type`: Type,
     name: Identifier,
     defaultValue: Optional[Expression]
@@ -22,7 +22,7 @@ object AnnotationMember {
 
   def unapply(m: AnnotationMember): Some[(
     NodeList[Modifier],
-    NodeList[expression.Annotation],
+    NodeList[Annotation],
     Type,
     Identifier,
     Optional[Expression])

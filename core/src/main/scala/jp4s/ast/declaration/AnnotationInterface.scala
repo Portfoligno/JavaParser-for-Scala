@@ -1,26 +1,26 @@
 package jp4s.ast
 package declaration
 
-import jp4s.ast.expression.SimpleName
+import jp4s.ast.expression.{Annotation, SimpleName}
 import jp4s.utility.JavaList
 
-object Annotation {
+object AnnotationInterface {
   def apply(
     modifiers: JavaList[Modifier],
-    annotations: JavaList[expression.Annotation],
+    annotations: JavaList[Annotation],
     name: Identifier,
     members: JavaList[Body]
-  ): Annotation =
-    new Annotation(
+  ): AnnotationInterface =
+    new AnnotationInterface(
       nodeList(modifiers),
       nodeList(annotations),
       SimpleName(name),
       nodeList(members)
     )
 
-  def unapply(a: Annotation): Some[(
+  def unapply(a: AnnotationInterface): Some[(
     NodeList[Modifier],
-    NodeList[expression.Annotation],
+    NodeList[Annotation],
     Identifier,
     NodeList[Body]
   )] =
