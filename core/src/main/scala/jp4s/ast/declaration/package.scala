@@ -14,6 +14,5 @@ package object declaration {
   type Initializer = InitializerDeclaration
   type Method = MethodDeclaration
   type Parameter = com.github.javaparser.ast.body.Parameter
-
   type ReceiverParameter = com.github.javaparser.ast.body.ReceiverParameter
 }
