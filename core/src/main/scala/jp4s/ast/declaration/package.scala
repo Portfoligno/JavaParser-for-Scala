@@ -13,7 +13,6 @@ package object declaration {
   type Fields = FieldDeclaration
   type Initializer = InitializerDeclaration
   type Method = MethodDeclaration
-
   type Parameter = com.github.javaparser.ast.body.Parameter
 
   type ReceiverParameter = com.github.javaparser.ast.body.ReceiverParameter
