@@ -1,8 +1,9 @@
-package jp4s.ast.declaration
+package jp4s.ast
+package declaration
 
 import jp4s.ast.`type`.{ClassOrInterfaceType, TypeParameter}
+import jp4s.ast.data.Identifier
 import jp4s.ast.expression.Annotation
-import jp4s.ast.{Identifier, Modifier, SimpleName, identifier, nodeList}
 import jp4s.utility.JavaList
 
 object Class {

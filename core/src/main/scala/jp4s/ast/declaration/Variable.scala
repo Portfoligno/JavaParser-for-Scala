@@ -3,6 +3,7 @@ package declaration
 
 import com.github.javaparser.ast.NodeList
 import com.github.javaparser.ast.body.VariableDeclarator
+import jp4s.ast.data.Identifier
 import jp4s.utility._
 
 import scala.collection.JavaConverters._
