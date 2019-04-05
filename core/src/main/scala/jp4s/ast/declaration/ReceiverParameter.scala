@@ -3,7 +3,7 @@ package declaration
 
 import com.github.javaparser.ast.expr.Name
 import jp4s.ast.expression.Annotation
-import jp4s.utility.JavaList
+import nejc4s.base.JavaList
 
 object ReceiverParameter {
   def apply(

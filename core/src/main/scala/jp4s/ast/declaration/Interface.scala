@@ -4,7 +4,7 @@ package declaration
 import jp4s.ast.`type`.{ClassOrInterfaceType, TypeParameter}
 import jp4s.ast.data.Identifier
 import jp4s.ast.expression.Annotation
-import jp4s.utility.JavaList
+import nejc4s.base.JavaList
 
 object Interface {
   def apply(

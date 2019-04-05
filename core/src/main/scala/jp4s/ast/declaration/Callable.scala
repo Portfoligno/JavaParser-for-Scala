@@ -4,7 +4,7 @@ package declaration
 import jp4s.ast.`type`.{ReferenceType, TypeParameter}
 import jp4s.ast.data.Identifier
 import jp4s.ast.expression.Annotation
-import jp4s.utility.{JavaList, Optional}
+import nejc4s.base.{JavaList, Optional}
 
 object Callable {
   def unapply(c: Callable): Some[(

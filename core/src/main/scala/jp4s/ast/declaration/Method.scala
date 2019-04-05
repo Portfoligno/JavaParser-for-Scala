@@ -1,11 +1,12 @@
-package jp4s.ast
+package jp4s
+package ast
 package declaration
 
 import jp4s.ast.`type`.{ReferenceType, TypeParameter}
 import jp4s.ast.data.Identifier
 import jp4s.ast.expression.Annotation
 import jp4s.ast.statement.Block
-import jp4s.utility._
+import nejc4s.base.{JavaList, Optional}
 
 object Method {
   def apply(

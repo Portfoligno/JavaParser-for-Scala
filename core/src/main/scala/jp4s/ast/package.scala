@@ -2,7 +2,7 @@ package jp4s
 
 import com.github.javaparser.ast.NodeList
 import jp4s.ast.data.Identifier
-import jp4s.utility.JavaList
+import nejc4s.base.JavaList
 
 import scala.language.implicitConversions
 
