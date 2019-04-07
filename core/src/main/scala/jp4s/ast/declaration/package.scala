@@ -8,6 +8,7 @@ package object declaration {
   type Body = BodyDeclaration[_ <: BodyDeclaration[_]]
   type Callable = CallableDeclaration[_ <: CallableDeclaration[_]]
   type ClassOrInterface = ClassOrInterfaceDeclaration
+  type ClassOrInterfaceOrEnum = TypeDeclaration[_ <: TypeDeclaration[_]]
   type Constructor = ConstructorDeclaration
   type EnumConstant = EnumConstantDeclaration
   type Fields = FieldDeclaration
