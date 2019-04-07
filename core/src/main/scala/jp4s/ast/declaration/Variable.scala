@@ -18,7 +18,7 @@ sealed trait Variable {
 }
 
 object Variable {
-  case class Parsed(v: VariableDeclarator) extends Variable {
+  case class Node(v: VariableDeclarator) extends Variable {
     override
     def name: Identifier =
       identifier(v.getName)
@@ -28,11 +28,11 @@ object Variable {
       v.getInitializer
   }
 
-  case class Raw(name: Identifier, initializer: Optional[Expression]) extends Variable
+  case class Pure(name: Identifier, initializer: Optional[Expression]) extends Variable
 
 
   def apply(name: Identifier, initializer: Optional[Expression]): Variable =
-    Raw(name, initializer)
+    Pure(name, initializer)
 
   def unapply(v: Variable): Some[(Identifier, Optional[Expression])] =
     Some(v.name -> v.initializer)
@@ -49,7 +49,7 @@ object Variable {
 
   private[declaration]
   def nejl(variables: NodeList[VariableDeclarator]): Nejl[Variable] =
-    new Proxy(variables)(Parsed)
+    new Proxy(variables)(Node)
 
   private[declaration]
   def nodeList(`type`: Type, variables: Nejl[Variable]): NodeList[VariableDeclarator] = {
@@ -57,10 +57,10 @@ object Variable {
       new NodeList(
         variables
           .map {
-            case Parsed(v) =>
+            case Node(v) =>
               new VariableDeclarator(`type`.clone(), v.getName, v.getInitializer.orElseNull)
 
-            case Raw(name, initializer) =>
+            case Pure(name, initializer) =>
               new VariableDeclarator(`type`.clone(), SimpleName(name), initializer.orElseNull)
           }
           .asJava
