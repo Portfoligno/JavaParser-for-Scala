@@ -2,6 +2,7 @@ package jp4s.ast
 package declaration
 
 import com.github.javaparser.ast.expr.Name
+import jp4s.ast.`type`.Type
 import jp4s.ast.expression.Annotation
 import nejc4s.base.JavaList
 

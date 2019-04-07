@@ -4,15 +4,6 @@ import com.github.javaparser.ast.Modifier.Keyword._
 import com.github.javaparser.ast.Modifier.{Keyword => KeywordEnum}
 
 object Modifier {
-  private[ast]
-  class Keyword(enum: KeywordEnum) {
-    def apply(): Modifier =
-      new com.github.javaparser.ast.Modifier(enum)
-
-    def unapply(modifier: Modifier): Boolean =
-      modifier.getKeyword == enum
-  }
-
   object Default extends Keyword(DEFAULT)
   object Public extends Keyword(PUBLIC)
   object Protected extends Keyword(PROTECTED)
@@ -27,4 +18,14 @@ object Modifier {
   object Strictfp extends Keyword(STRICTFP)
   object Transitive extends Keyword(TRANSITIVE)
   object PackagePrivate extends Keyword(PACKAGE_PRIVATE)
+
+
+  private[ast]
+  class Keyword(enum: KeywordEnum) {
+    def apply(): Modifier =
+      new com.github.javaparser.ast.Modifier(enum)
+
+    def unapply(modifier: Modifier): Boolean =
+      modifier.getKeyword == enum
+  }
 }

@@ -1,7 +1,7 @@
 package jp4s.ast
 package declaration
 
-import jp4s.ast.`type`.{ReferenceType, TypeParameter}
+import jp4s.ast.`type`.{ReferenceType, Type, TypeParameter}
 import jp4s.ast.data.Identifier
 import jp4s.ast.expression.Annotation
 import jp4s.ast.statement.Block

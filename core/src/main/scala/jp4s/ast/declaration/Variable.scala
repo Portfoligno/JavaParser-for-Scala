@@ -3,9 +3,9 @@ package declaration
 
 import com.github.javaparser.ast.NodeList
 import com.github.javaparser.ast.body.VariableDeclarator
-import jp4s.ast.`type`.ArrayType
+import jp4s.ast.`type`.{ArrayType, Type}
 import jp4s.ast.data.Identifier
-import jp4s.ast.expression.Annotation
+import jp4s.ast.expression.{Annotation, Expression}
 import nejc4s.alias.Nejl
 import nejc4s.base.{JavaCollection, JavaList, Optional}
 

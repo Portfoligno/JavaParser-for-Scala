@@ -2,7 +2,7 @@ package jp4s.ast
 package declaration
 
 import jp4s.ast.data.Identifier
-import jp4s.ast.expression.Annotation
+import jp4s.ast.expression.{Annotation, Expression}
 import nejc4s.base.JavaList
 
 object EnumConstant {

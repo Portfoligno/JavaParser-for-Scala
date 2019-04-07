@@ -7,5 +7,7 @@ package object `type` {
 
   type ReferenceType = com.github.javaparser.ast.`type`.ReferenceType
 
+  type Type = com.github.javaparser.ast.`type`.Type
+
   type TypeParameter = com.github.javaparser.ast.`type`.TypeParameter
 }

@@ -5,13 +5,9 @@ import jp4s.ast.data.Identifier
 import nejc4s.base.JavaList
 
 package object ast {
-  type Expression = com.github.javaparser.ast.expr.Expression
-
   type Modifier = com.github.javaparser.ast.Modifier
 
   type SimpleName = com.github.javaparser.ast.expr.SimpleName
-
-  type Type = com.github.javaparser.ast.`type`.Type
 
   type Node = com.github.javaparser.ast.Node
 
