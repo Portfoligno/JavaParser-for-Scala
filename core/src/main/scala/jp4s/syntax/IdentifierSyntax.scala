@@ -1,6 +1,6 @@
 package jp4s.syntax
 
-import jp4s.ast.data.Identifier
+import jp4s.ast.Identifier
 
 trait IdentifierSyntax {
   implicit def toIdStringContext(sc: StringContext): IdStringContext =

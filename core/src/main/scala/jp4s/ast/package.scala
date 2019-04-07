@@ -1,15 +1,40 @@
 package jp4s
 
 import com.github.javaparser.ast.NodeList
-import jp4s.ast.data.Identifier
 import nejc4s.base.JavaList
 
 package object ast {
   type Modifier = com.github.javaparser.ast.Modifier
-
+  type Node = com.github.javaparser.ast.Node
   type SimpleName = com.github.javaparser.ast.expr.SimpleName
 
-  type Node = com.github.javaparser.ast.Node
+
+  type Identifier <: String with Identifier.Tag
+
+  object Identifier {
+    private[ast] trait Tag extends Any
+
+    private
+    def isIdentifier(s: String): Boolean =
+      s.nonEmpty &&
+        Character.isJavaIdentifierStart(s.head) &&
+        s.tail.forall(Character.isJavaIdentifierPart)
+
+    def fromString(s: String): Option[Identifier] =
+      if (isIdentifier(s)) {
+        Some(s.asInstanceOf[Identifier])
+      } else {
+        None
+      }
+
+    def unsafeFromString(s: String): Identifier =
+      if (isIdentifier(s)) {
+        s.asInstanceOf[Identifier]
+      } else {
+        throw new IllegalArgumentException(String.valueOf(s))
+      }
+  }
+
 
 
   private[ast]

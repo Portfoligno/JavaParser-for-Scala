@@ -1,7 +1,6 @@
 package jp4s.ast
 package `type`
 
-import jp4s.ast.data.Identifier
 import jp4s.ast.expression.Annotation
 import nejc4s.base.JavaList
 
