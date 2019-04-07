@@ -11,10 +11,22 @@ import nejc4s.base.{JavaCollection, JavaList, Optional}
 import scala.collection.JavaConverters._
 import scala.collection.convert.ImplicitConversionsToScala._
 
-sealed trait Variable
+sealed trait Variable {
+  def name: Identifier
+
+  def initializer: Optional[Expression]
+}
 
 object Variable {
-  case class Parsed(v: VariableDeclarator) extends Variable
+  case class Parsed(v: VariableDeclarator) extends Variable {
+    override
+    def name: Identifier =
+      identifier(v.getName)
+
+    override
+    def initializer: Optional[Expression] =
+      v.getInitializer
+  }
 
   case class Raw(name: Identifier, initializer: Optional[Expression]) extends Variable
 
@@ -22,14 +34,8 @@ object Variable {
   def apply(name: Identifier, initializer: Optional[Expression]): Variable =
     Raw(name, initializer)
 
-  def unapply(variable: Variable): Option[(Identifier, Optional[Expression])] =
-    variable match {
-      case Parsed(v) =>
-        Some((identifier(v.getName), v.getInitializer))
-
-      case r: Raw =>
-        Raw.unapply(r)
-    }
+  def unapply(v: Variable): Some[(Identifier, Optional[Expression])] =
+    Some(v.name -> v.initializer)
 
 
   private
