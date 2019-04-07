@@ -5,8 +5,8 @@ import jp4s.ast.data.Identifier
 import jp4s.ast.expression.Annotation
 import nejc4s.base.JavaList
 
-object ClassOrInterfaceOrEnum {
-  def unapply(c: ClassOrInterfaceOrEnum): Some[(
+object TypeBody {
+  def unapply(c: TypeBody): Some[(
     JavaList[Modifier],
     JavaList[Annotation],
     Identifier,
