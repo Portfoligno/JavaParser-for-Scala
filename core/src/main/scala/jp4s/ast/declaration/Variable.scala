@@ -1,5 +1,4 @@
-package jp4s
-package ast
+package jp4s.ast
 package declaration
 
 import com.github.javaparser.ast.NodeList
@@ -53,6 +52,8 @@ object Variable {
 
   private[declaration]
   def nodeList(`type`: Type, variables: Nejl[Variable]): NodeList[VariableDeclarator] = {
+    import jp4s.syntax.optional._
+
     def convertElements: NodeList[VariableDeclarator] =
       new NodeList(
         variables

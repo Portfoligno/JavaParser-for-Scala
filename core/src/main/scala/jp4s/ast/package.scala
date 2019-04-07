@@ -4,8 +4,6 @@ import com.github.javaparser.ast.NodeList
 import jp4s.ast.data.Identifier
 import nejc4s.base.JavaList
 
-import scala.language.implicitConversions
-
 package object ast {
   type Expression = com.github.javaparser.ast.expr.Expression
 
@@ -16,7 +14,6 @@ package object ast {
   type Type = com.github.javaparser.ast.`type`.Type
 
   type Node = com.github.javaparser.ast.Node
-
 
 
   private[ast]

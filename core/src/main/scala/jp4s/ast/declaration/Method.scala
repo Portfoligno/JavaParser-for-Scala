@@ -1,5 +1,4 @@
-package jp4s
-package ast
+package jp4s.ast
 package declaration
 
 import jp4s.ast.`type`.{ReferenceType, TypeParameter}
@@ -9,6 +8,8 @@ import jp4s.ast.statement.Block
 import nejc4s.base.{JavaList, Optional}
 
 object Method {
+  import jp4s.syntax.optional._
+
   def apply(
     modifiers: JavaList[Modifier],
     annotations: JavaList[Annotation],

@@ -1,7 +1,5 @@
 package jp4s.ast
 
-import scala.language.implicitConversions
-
 package object data {
   type Identifier <: String with Identifier.Tag
 
@@ -28,9 +26,4 @@ package object data {
         throw new IllegalArgumentException(String.valueOf(s))
       }
   }
-
-
-
-  implicit def toSimpleStringContext(sc: StringContext): IdentifierStringContext =
-    new IdentifierStringContext(sc)
 }
