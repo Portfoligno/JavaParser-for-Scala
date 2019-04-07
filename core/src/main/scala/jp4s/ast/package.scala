@@ -5,6 +5,7 @@ import nejc4s.base.JavaList
 
 package object ast {
   type Modifier = com.github.javaparser.ast.Modifier
+  type Name = com.github.javaparser.ast.expr.Name
   type Node = com.github.javaparser.ast.Node
   type SimpleName = com.github.javaparser.ast.expr.SimpleName
 
