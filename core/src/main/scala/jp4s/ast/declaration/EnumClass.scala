@@ -6,7 +6,7 @@ import jp4s.ast.data.Identifier
 import jp4s.ast.expression.Annotation
 import nejc4s.base.JavaList
 
-object Enum {
+object EnumClass {
   def apply(
     modifiers: JavaList[Modifier],
     annotations: JavaList[Annotation],
@@ -14,8 +14,8 @@ object Enum {
     implementedTypes: JavaList[ClassOrInterfaceType],
     entries: JavaList[EnumConstant],
     members: JavaList[Body]
-  ): Enum =
-    new Enum(
+  ): EnumClass =
+    new EnumClass(
       nodeList(modifiers),
       nodeList(annotations),
       SimpleName(name),
@@ -24,7 +24,7 @@ object Enum {
       nodeList(members)
     )
 
-  def unapply(e: Enum): Some[(
+  def unapply(e: EnumClass): Some[(
     JavaList[Modifier],
     JavaList[Annotation],
     Identifier,
