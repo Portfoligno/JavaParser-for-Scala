@@ -10,11 +10,9 @@ import nejc4s.alias.Nejl
 import nejc4s.base.{JavaCollection, JavaList, Optional}
 
 import scala.annotation.tailrec
-import scala.collection.JavaConverters._
-import scala.collection.convert.ImplicitConversionsToScala._
 
 sealed trait Variable {
-  def arrayDimensions: List[JavaList[Annotation]]
+  def arrayDimensions: JavaList[JavaList[Annotation]]
 
   def name: Identifier
 
@@ -23,14 +21,14 @@ sealed trait Variable {
 
 object Variable {
   def apply(
-    arrayDimensions: List[JavaList[Annotation]],
+    arrayDimensions: JavaList[JavaList[Annotation]],
     name: Identifier,
     initializer: Optional[Expression]
   ): Variable =
     Pure(arrayDimensions, name, initializer)
 
   def unapply(v: Variable): Some[(
-    List[JavaList[Annotation]],
+    JavaList[JavaList[Annotation]],
     Identifier,
     Optional[Expression]
   )] =
@@ -39,14 +37,14 @@ object Variable {
 
 
   case class Pure(
-    arrayDimensions: List[JavaList[Annotation]],
+    arrayDimensions: JavaList[JavaList[Annotation]],
     name: Identifier,
     initializer: Optional[Expression]
   ) extends Variable
 
   case class ByNode(v: VariableDeclarator) extends Variable {
     override
-    def arrayDimensions: List[JavaList[Annotation]] =
+    def arrayDimensions: JavaList[JavaList[Annotation]] =
       NestingOnName.unapply(v.getType).get._1
 
     override
@@ -60,14 +58,17 @@ object Variable {
 
 
 
+  import scala.collection.JavaConverters._
+  import scala.collection.convert.ImplicitConversionsToScala._
+
   private[declaration]
   def nejl(variables: NodeList[VariableDeclarator]): Nejl[Variable] =
-    new Proxy(variables)
+    new VariableNejlProxy(variables)
 
   private[declaration]
   def nodeList(`type`: Type, variables: Nejl[Variable]): NodeList[VariableDeclarator] =
     variables match {
-      case p: Proxy if p
+      case p: VariableNejlProxy if p
         .source
         .view
         .map(_.getType)
@@ -97,7 +98,7 @@ object Variable {
 
 
   private
-  class Proxy(val source: NodeList[VariableDeclarator])
+  class VariableNejlProxy(val source: NodeList[VariableDeclarator])
     extends Nejl.UnsafeProxy[Variable]
       with JavaList[Variable]
       with JavaCollection[Variable] {
@@ -110,9 +111,9 @@ object Variable {
   private
   object NestingOnName {
     @tailrec
-    def apply(dimensions: List[JavaList[Annotation]], baseType: Type): Type =
+    def apply(dimensions: Seq[JavaList[Annotation]], baseType: Type): Type =
       dimensions match {
-        case annotations :: remainingDimensions =>
+        case Seq(annotations, remainingDimensions @ _*) =>
           NestingOnName(remainingDimensions, ArrayType(
             baseType,
             ArrayType.Origin.Name,
@@ -123,15 +124,15 @@ object Variable {
           baseType
       }
 
-    def unapply(nestedType: Type): Some[(List[JavaList[Annotation]], Type)] = {
+    def unapply(nestedType: Type): Some[(JavaList[JavaList[Annotation]], Type)] = {
       @tailrec
-      def unwrap(dimensions: List[JavaList[Annotation]], t: Type): (List[JavaList[Annotation]], Type) =
-        t match {
-          case ArrayType(component, ArrayType.Origin.Name, annotations) =>
-            unwrap(annotations :: dimensions, component)
+      def unwrap(dimensions: List[JavaList[Annotation]], currentType: Type): (JavaList[JavaList[Annotation]], Type) =
+        currentType match {
+          case ArrayType(componentType, ArrayType.Origin.Name, annotations) =>
+            unwrap(annotations :: dimensions, componentType)
 
           case _ =>
-            dimensions -> t
+            dimensions.asJava -> currentType
         }
 
       Some(unwrap(Nil, nestedType))
