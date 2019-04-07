@@ -5,15 +5,16 @@ import com.github.javaparser.ast.NodeList
 import com.github.javaparser.ast.body.VariableDeclarator
 import jp4s.ast.`type`.ArrayType
 import jp4s.ast.data.Identifier
+import jp4s.ast.expression.Annotation
 import nejc4s.alias.Nejl
-import nejc4s.base.{JavaCollection, JavaList, NaturalInt, Optional}
+import nejc4s.base.{JavaCollection, JavaList, Optional}
 
 import scala.annotation.tailrec
 import scala.collection.JavaConverters._
 import scala.collection.convert.ImplicitConversionsToScala._
 
 sealed trait Variable {
-  def arrayDimensions: NaturalInt
+  def arrayDimensions: List[JavaList[Annotation]]
 
   def name: Identifier
 
@@ -22,32 +23,31 @@ sealed trait Variable {
 
 object Variable {
   def apply(
-    arrayDimensions: NaturalInt,
+    arrayDimensions: List[JavaList[Annotation]],
     name: Identifier,
     initializer: Optional[Expression]
   ): Variable =
     Pure(arrayDimensions, name, initializer)
 
   def unapply(v: Variable): Some[(
-    NaturalInt,
+    List[JavaList[Annotation]],
     Identifier,
     Optional[Expression]
   )] =
     Some((v.arrayDimensions, v.name, v.initializer))
 
 
+
   case class Pure(
-    arrayDimensions: NaturalInt,
+    arrayDimensions: List[JavaList[Annotation]],
     name: Identifier,
     initializer: Optional[Expression]
   ) extends Variable
 
   case class ByNode(v: VariableDeclarator) extends Variable {
     override
-    def arrayDimensions: NaturalInt =
-      NaturalInt.unsafeFromInt(
-        NestingOnName.unapply(v.getType).get._1
-      )
+    def arrayDimensions: List[JavaList[Annotation]] =
+      NestingOnName.unapply(v.getType).get._1
 
     override
     def name: Identifier =
@@ -65,7 +65,7 @@ object Variable {
     new Proxy(variables)
 
   private[declaration]
-  def nodeList(`type`: Type, variables: Nejl[Variable]): NodeList[VariableDeclarator] = {
+  def nodeList(`type`: Type, variables: Nejl[Variable]): NodeList[VariableDeclarator] =
     variables match {
       case p: Proxy if p
         .source
@@ -94,7 +94,6 @@ object Variable {
             .asJava
         )
     }
-  }
 
 
   private
@@ -111,28 +110,31 @@ object Variable {
   private
   object NestingOnName {
     @tailrec
-    def apply(depth: Int, baseType: Type): Type =
-      if (depth > 0) {
-        NestingOnName(
-          depth - 1,
-          ArrayType(baseType, ArrayType.Origin.Name, JavaList())
-        )
-      } else {
-        baseType
+    def apply(dimensions: List[JavaList[Annotation]], baseType: Type): Type =
+      dimensions match {
+        case annotations :: remainingDimensions =>
+          NestingOnName(remainingDimensions, ArrayType(
+            baseType,
+            ArrayType.Origin.Name,
+            annotations)
+          )
+
+        case _ =>
+          baseType
       }
 
-    def unapply(t: Type): Some[(Int, Type)] = {
+    def unapply(nestedType: Type): Some[(List[JavaList[Annotation]], Type)] = {
       @tailrec
-      def unwrap(depth: Int, nestedType: Type): (Int, Type) =
-        nestedType match {
-          case ArrayType(component, ArrayType.Origin.Name, _) =>
-            unwrap(1 + depth, component)
+      def unwrap(dimensions: List[JavaList[Annotation]], t: Type): (List[JavaList[Annotation]], Type) =
+        t match {
+          case ArrayType(component, ArrayType.Origin.Name, annotations) =>
+            unwrap(annotations :: dimensions, component)
 
           case _ =>
-            depth -> nestedType
+            dimensions -> t
         }
 
-      Some(unwrap(0, t))
+      Some(unwrap(Nil, nestedType))
     }
   }
 }
