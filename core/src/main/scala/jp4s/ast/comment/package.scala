@@ -4,4 +4,5 @@ import com.github.javaparser.ast.comments
 
 package object comment {
   type BlockComment = comments.BlockComment
+  type Comment = comments.Comment
 }
