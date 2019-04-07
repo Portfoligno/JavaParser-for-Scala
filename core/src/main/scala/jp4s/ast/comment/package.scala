@@ -7,4 +7,5 @@ package object comment {
   type BlockComment = comments.BlockComment
   type Comment = comments.Comment
   type Javadoc = JavadocComment
+  type LineComment = comments.LineComment
 }
