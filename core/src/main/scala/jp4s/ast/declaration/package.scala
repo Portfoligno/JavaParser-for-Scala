@@ -10,6 +10,7 @@ package object declaration {
   type ClassOrInterface = ClassOrInterfaceDeclaration
   type ClassOrInterfaceOrEnum = TypeDeclaration[_ <: TypeDeclaration[_]]
   type Constructor = ConstructorDeclaration
+  type Enum = EnumDeclaration
   type EnumConstant = EnumConstantDeclaration
   type Fields = FieldDeclaration
   type Initializer = InitializerDeclaration
