@@ -4,6 +4,7 @@ import com.github.javaparser.ast.NodeList
 import nejc4s.base.JavaList
 
 package object ast {
+  type ArrayCreationLevel = com.github.javaparser.ast.ArrayCreationLevel
   type Modifier = com.github.javaparser.ast.Modifier
   type Name = com.github.javaparser.ast.expr.Name
   type Node = com.github.javaparser.ast.Node
