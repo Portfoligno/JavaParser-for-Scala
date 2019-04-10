@@ -9,7 +9,7 @@ object ReceiverParameter {
   def apply(
     annotations: JavaList[Annotation],
     `type`: Type,
-    name: Name
+    name: NameNode
   ): ReceiverParameter =
     new ReceiverParameter(
       nodeList(annotations),
@@ -20,7 +20,7 @@ object ReceiverParameter {
   def unapply(p: ReceiverParameter): Option[(
     JavaList[Annotation],
     Type,
-    Name
+    NameNode
   )] =
     Some((p.getAnnotations, p.getType, p.getName))
 }

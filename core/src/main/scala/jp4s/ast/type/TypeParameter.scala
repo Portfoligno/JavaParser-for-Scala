@@ -10,7 +10,7 @@ object TypeParameter {
     typeBound: JavaList[ClassOrInterfaceType],
     annotations: JavaList[Annotation]
   ): TypeParameter =
-    new TypeParameter(SimpleName(name), nodeList(typeBound), nodeList(annotations))
+    new TypeParameter(simpleName(name), nodeList(typeBound), nodeList(annotations))
 
   def unapply(p: TypeParameter): Option[(Identifier, JavaList[ClassOrInterfaceType], JavaList[Annotation])] =
     Some((identifier(p.getName), p.getTypeBound, p.getAnnotations))

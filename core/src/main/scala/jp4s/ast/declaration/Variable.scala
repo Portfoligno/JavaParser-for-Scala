@@ -87,7 +87,7 @@ object Variable {
             .map(v =>
               new VariableDeclarator(
                 NestingOnName(v.arrayDimensions, `type`),
-                SimpleName(v.name),
+                simpleName(v.name),
                 v.initializer.orElseNull
               )
             )

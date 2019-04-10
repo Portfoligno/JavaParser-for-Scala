@@ -1,14 +1,14 @@
 package jp4s
 
 import com.github.javaparser.ast.NodeList
-import nejc4s.base.JavaList
+import nejc4s.base.{JavaList, Optional}
 
 package object ast {
   type ArrayCreationLevel = com.github.javaparser.ast.ArrayCreationLevel
   type Modifier = com.github.javaparser.ast.Modifier
-  type Name = com.github.javaparser.ast.expr.Name
+  type NameNode = com.github.javaparser.ast.expr.Name
   type Node = com.github.javaparser.ast.Node
-  type SimpleName = com.github.javaparser.ast.expr.SimpleName
+  type SimpleNameNode = com.github.javaparser.ast.expr.SimpleName
 
 
   type Identifier <: String with Identifier.Tag
@@ -40,8 +40,12 @@ package object ast {
 
 
   private[ast]
-  def identifier(s: SimpleName): Identifier =
+  def identifier(s: SimpleNameNode): Identifier =
     Identifier.unsafeFromString(s.getIdentifier)
+
+  private[ast]
+  def simpleName(identifier: Identifier): SimpleNameNode =
+    SimpleNameNode(identifier)
 
   private[ast]
   def nodeList[A <: Node](javaList: JavaList[A]): NodeList[A] =
@@ -52,4 +56,25 @@ package object ast {
       case _ =>
         new NodeList(javaList)
     }
+
+
+  private[ast]
+  object SimpleNameNode {
+    def apply(identifier: Identifier): SimpleNameNode =
+      new SimpleNameNode(identifier)
+
+    def unapply(s: SimpleNameNode): Some[Identifier] =
+      Some(identifier(s))
+  }
+
+  private[ast]
+  object NameNode {
+    import jp4s.syntax.optional._
+
+    def apply(qualifier: Optional[NameNode], identifier: Identifier): NameNode =
+      new NameNode(qualifier.orElseNull, identifier)
+
+    def unapply(n: NameNode): Some[(Optional[NameNode], Identifier)] =
+      Some((n.getQualifier, Identifier.unsafeFromString(n.getIdentifier)))
+  }
 }

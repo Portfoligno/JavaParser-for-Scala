@@ -20,7 +20,7 @@ object Parameter {
       `type`,
       isVarArgs,
       nodeList(varArgsAnnotations),
-      SimpleName(name)
+      simpleName(name)
     )
 
   def unapply(p: Parameter): Option[(
