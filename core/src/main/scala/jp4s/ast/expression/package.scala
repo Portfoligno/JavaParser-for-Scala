@@ -32,4 +32,5 @@ package object expression {
   type NormalAnnotation = NormalAnnotationExpr
   type NullLiteral = NullLiteralExpr
   type ObjectCreation = ObjectCreationExpr
+  type SingleMemberAnnotation = SingleMemberAnnotationExpr
 }
