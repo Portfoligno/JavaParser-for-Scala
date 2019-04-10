@@ -10,6 +10,7 @@ package object expression {
   type Assign = AssignExpr
   type Binary = BinaryExpr
   type BooleanLiteral = BooleanLiteralExpr
+  type Cast = CastExpr
 
   type Expression = com.github.javaparser.ast.expr.Expression
 }
