@@ -16,4 +16,6 @@ package object expression {
   type Conditional = ConditionalExpr
 
   type Expression = com.github.javaparser.ast.expr.Expression
+
+  type FloatingPointLiteral = DoubleLiteralExpr
 }
