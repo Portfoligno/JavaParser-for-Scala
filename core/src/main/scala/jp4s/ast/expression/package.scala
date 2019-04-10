@@ -30,4 +30,5 @@ package object expression {
   type MethodReference = MethodReferenceExpr
   type Name = NameExpr
   type NormalAnnotation = NormalAnnotationExpr
+  type NullLiteral = NullLiteralExpr
 }
