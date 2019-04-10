@@ -21,4 +21,5 @@ package object expression {
   type InstanceOf = InstanceOfExpr
   type IntegerLiteral = IntegerLiteralExpr
   type Lambda = LambdaExpr
+  type Literal = LiteralExpr
 }
