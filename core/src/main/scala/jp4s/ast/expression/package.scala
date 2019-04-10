@@ -37,4 +37,5 @@ package object expression {
   type SuperAccess = SuperExpr
   type Switch = SwitchExpr
   type ThisAccess = ThisExpr
+  type Unary = UnaryExpr
 }

@@ -27,8 +27,8 @@ object Binary {
   object Remainder extends Factory(REMAINDER)
 
 
-  def unapply(a: Binary): Some[(Expression, Expression)] =
-    Some((a.getLeft, a.getRight))
+  def unapply(b: Binary): Some[(Expression, Expression)] =
+    Some((b.getLeft, b.getRight))
 
 
   private[expression]
