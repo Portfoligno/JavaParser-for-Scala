@@ -88,9 +88,16 @@ package object ast {
 
 
   private[ast]
+  def nejl[A](nodeList: NodeList[A]): Nejl[A] =
+    NodeListNejlProxy(nodeList)
+
+  private[ast]
   def nodeList[A <: Node](javaList: JavaList[A]): NodeList[A] =
     javaList match {
       case nodeList: NodeList[A] =>
+        nodeList
+
+      case NodeListNejlProxy(nodeList) =>
         nodeList
 
       case _ =>
@@ -118,4 +125,11 @@ package object ast {
     def unapply(n: NameNode): Some[(Optional[NameNode], Identifier)] =
       Some((n.getQualifier, Identifier.unsafeFromString(n.getIdentifier)))
   }
+
+
+
+  private
+  case class NodeListNejlProxy[A](
+    override protected val delegate: NodeList[A]
+  ) extends Nejl.UnsafeProxy[A]
 }
