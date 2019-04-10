@@ -36,4 +36,5 @@ package object expression {
   type StringLiteral = StringLiteralExpr
   type SuperAccess = SuperExpr
   type Switch = SwitchExpr
+  type ThisAccess = ThisExpr
 }
