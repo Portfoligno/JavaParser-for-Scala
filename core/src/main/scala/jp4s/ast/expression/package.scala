@@ -33,4 +33,5 @@ package object expression {
   type NullLiteral = NullLiteralExpr
   type ObjectCreation = ObjectCreationExpr
   type SingleMemberAnnotation = SingleMemberAnnotationExpr
+  type StringLiteral = StringLiteralExpr
 }
