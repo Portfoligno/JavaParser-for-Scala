@@ -24,4 +24,5 @@ package object expression {
   type Literal = LiteralExpr
   type LiteralByString = LiteralStringValueExpr
   type LongLiteral = LongLiteralExpr
+  type MarkerAnnotation = MarkerAnnotationExpr
 }
