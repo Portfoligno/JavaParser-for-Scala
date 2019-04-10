@@ -14,6 +14,7 @@ package object expression {
   type CharLiteral = CharLiteralExpr
   type ClassAccess = ClassExpr
   type Conditional = ConditionalExpr
+  type Enclosed = EnclosedExpr
 
   type Expression = com.github.javaparser.ast.expr.Expression
 
