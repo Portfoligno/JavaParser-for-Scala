@@ -11,6 +11,7 @@ package object expression {
   type Binary = BinaryExpr
   type BooleanLiteral = BooleanLiteralExpr
   type Cast = CastExpr
+  type CharLiteral = CharLiteralExpr
 
   type Expression = com.github.javaparser.ast.expr.Expression
 }
