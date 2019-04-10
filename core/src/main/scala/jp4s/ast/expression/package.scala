@@ -25,4 +25,5 @@ package object expression {
   type LiteralByString = LiteralStringValueExpr
   type LongLiteral = LongLiteralExpr
   type MarkerAnnotation = MarkerAnnotationExpr
+  type MemberValuePair = com.github.javaparser.ast.expr.MemberValuePair
 }
