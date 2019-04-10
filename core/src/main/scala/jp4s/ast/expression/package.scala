@@ -28,4 +28,5 @@ package object expression {
   type MemberValuePair = com.github.javaparser.ast.expr.MemberValuePair
   type MethodCall = MethodCallExpr
   type MethodReference = MethodReferenceExpr
+  type Name = NameExpr
 }
