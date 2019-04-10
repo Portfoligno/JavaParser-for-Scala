@@ -1,31 +1,32 @@
 package jp4s.ast
 
 import com.github.javaparser.ast.Modifier.Keyword._
-import com.github.javaparser.ast.Modifier.{Keyword => KeywordEnum}
 
 object Modifier {
-  object Default extends Keyword(DEFAULT)
-  object Public extends Keyword(PUBLIC)
-  object Protected extends Keyword(PROTECTED)
-  object Private extends Keyword(PRIVATE)
-  object Abstract extends Keyword(ABSTRACT)
-  object Static extends Keyword(STATIC)
-  object Final extends Keyword(FINAL)
-  object Transient extends Keyword(TRANSIENT)
-  object Volatile extends Keyword(VOLATILE)
-  object Synchronized extends Keyword(SYNCHRONIZED)
-  object Native extends Keyword(NATIVE)
-  object Strictfp extends Keyword(STRICTFP)
-  object Transitive extends Keyword(TRANSITIVE)
-  object PackagePrivate extends Keyword(PACKAGE_PRIVATE)
+  type Keyword = com.github.javaparser.ast.Modifier.Keyword
+
+  object Default extends Factory(DEFAULT)
+  object Public extends Factory(PUBLIC)
+  object Protected extends Factory(PROTECTED)
+  object Private extends Factory(PRIVATE)
+  object Abstract extends Factory(ABSTRACT)
+  object Static extends Factory(STATIC)
+  object Final extends Factory(FINAL)
+  object Transient extends Factory(TRANSIENT)
+  object Volatile extends Factory(VOLATILE)
+  object Synchronized extends Factory(SYNCHRONIZED)
+  object Native extends Factory(NATIVE)
+  object Strictfp extends Factory(STRICTFP)
+  object Transitive extends Factory(TRANSITIVE)
+  object PackagePrivate extends Factory(PACKAGE_PRIVATE)
 
 
   private[ast]
-  class Keyword(enum: KeywordEnum) {
+  class Factory(keyword: Keyword) {
     def apply(): Modifier =
-      new com.github.javaparser.ast.Modifier(enum)
+      new Modifier(keyword)
 
     def unapply(modifier: Modifier): Boolean =
-      modifier.getKeyword == enum
+      modifier.getKeyword == keyword
   }
 }
