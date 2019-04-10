@@ -15,8 +15,8 @@ package object expression {
   type ClassAccess = ClassExpr
   type Conditional = ConditionalExpr
   type Enclosed = EnclosedExpr
-
   type Expression = com.github.javaparser.ast.expr.Expression
+  type FieldAccess = FieldAccessExpr
 
   type FloatingPointLiteral = DoubleLiteralExpr
 }
