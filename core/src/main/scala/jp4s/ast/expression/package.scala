@@ -31,4 +31,5 @@ package object expression {
   type Name = NameExpr
   type NormalAnnotation = NormalAnnotationExpr
   type NullLiteral = NullLiteralExpr
+  type ObjectCreation = ObjectCreationExpr
 }
