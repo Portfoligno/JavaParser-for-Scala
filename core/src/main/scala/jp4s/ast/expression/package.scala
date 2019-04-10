@@ -13,6 +13,7 @@ package object expression {
   type Cast = CastExpr
   type CharLiteral = CharLiteralExpr
   type ClassAccess = ClassExpr
+  type Conditional = ConditionalExpr
 
   type Expression = com.github.javaparser.ast.expr.Expression
 }
