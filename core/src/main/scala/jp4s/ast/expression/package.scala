@@ -35,4 +35,5 @@ package object expression {
   type SingleMemberAnnotation = SingleMemberAnnotationExpr
   type StringLiteral = StringLiteralExpr
   type SuperAccess = SuperExpr
+  type Switch = SwitchExpr
 }
