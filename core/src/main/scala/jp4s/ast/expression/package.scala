@@ -34,4 +34,5 @@ package object expression {
   type ObjectCreation = ObjectCreationExpr
   type SingleMemberAnnotation = SingleMemberAnnotationExpr
   type StringLiteral = StringLiteralExpr
+  type SuperAccess = SuperExpr
 }
