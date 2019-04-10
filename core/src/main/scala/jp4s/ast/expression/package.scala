@@ -20,4 +20,5 @@ package object expression {
   type FloatingPointLiteral = DoubleLiteralExpr
   type InstanceOf = InstanceOfExpr
   type IntegerLiteral = IntegerLiteralExpr
+  type Lambda = LambdaExpr
 }
