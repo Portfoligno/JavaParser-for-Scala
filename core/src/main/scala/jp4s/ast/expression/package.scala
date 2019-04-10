@@ -29,4 +29,5 @@ package object expression {
   type MethodCall = MethodCallExpr
   type MethodReference = MethodReferenceExpr
   type Name = NameExpr
+  type NormalAnnotation = NormalAnnotationExpr
 }
