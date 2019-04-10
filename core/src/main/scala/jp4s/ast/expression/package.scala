@@ -8,6 +8,7 @@ package object expression {
   type ArrayCreation = ArrayCreationExpr
   type ArrayInitializer = ArrayInitializerExpr
   type Assign = AssignExpr
+  type Binary = BinaryExpr
 
   type Expression = com.github.javaparser.ast.expr.Expression
 }
