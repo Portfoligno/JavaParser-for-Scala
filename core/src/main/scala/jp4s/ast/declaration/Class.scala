@@ -1,9 +1,10 @@
 package jp4s.ast
 package declaration
 
+import com.github.javaparser.ast.NodeList
 import jp4s.ast.`type`.{ClassOrInterfaceType, TypeParameter}
 import jp4s.ast.expression.Annotation
-import nejc4s.base.JavaList
+import nejc4s.base.{Absent, JavaList, Optional, Present}
 
 object Class {
   def apply(
@@ -11,7 +12,7 @@ object Class {
     annotations: JavaList[Annotation],
     name: Identifier,
     typeParameters: JavaList[TypeParameter],
-    extendedTypes: JavaList[ClassOrInterfaceType],
+    extendedType: Optional[ClassOrInterfaceType],
     implementedTypes: JavaList[ClassOrInterfaceType],
     members: JavaList[Body]
   ): ClassOrInterface =
@@ -21,7 +22,10 @@ object Class {
       false,
       simpleNameNode(name),
       nodeList(typeParameters),
-      nodeList(extendedTypes),
+      extendedType match {
+        case Present(t) => new NodeList(t)
+        case _ => new NodeList()
+      },
       nodeList(implementedTypes),
       nodeList(members)
     )
@@ -31,7 +35,7 @@ object Class {
     JavaList[Annotation],
     Identifier,
     JavaList[TypeParameter],
-    JavaList[ClassOrInterfaceType],
+    Optional[ClassOrInterfaceType],
     JavaList[ClassOrInterfaceType],
     JavaList[Body]
   )] =
@@ -43,7 +47,11 @@ object Class {
         c.getAnnotations,
         identifier(c.getName),
         c.getTypeParameters,
-        c.getExtendedTypes,
+        c.getExtendedTypes match {
+          case JavaList() => Absent()
+          case JavaList(t) => Present(t)
+          case r @ _ => throw new IllegalArgumentException(String.valueOf(r))
+        },
         c.getImplementedTypes,
         c.getMembers
       ))
