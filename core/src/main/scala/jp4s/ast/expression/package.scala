@@ -23,4 +23,5 @@ package object expression {
   type Lambda = LambdaExpr
   type Literal = LiteralExpr
   type LiteralByString = LiteralStringValueExpr
+  type LongLiteral = LongLiteralExpr
 }
