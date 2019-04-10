@@ -22,4 +22,5 @@ package object expression {
   type IntegerLiteral = IntegerLiteralExpr
   type Lambda = LambdaExpr
   type Literal = LiteralExpr
+  type LiteralByString = LiteralStringValueExpr
 }
