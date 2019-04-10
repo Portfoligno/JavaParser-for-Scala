@@ -14,7 +14,7 @@ object AnnotationInterface {
     new AnnotationInterface(
       nodeList(modifiers),
       nodeList(annotations),
-      simpleName(name),
+      simpleNameNode(name),
       nodeList(members)
     )
 

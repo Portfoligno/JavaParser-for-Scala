@@ -1,7 +1,10 @@
 package jp4s
 
 import com.github.javaparser.ast.NodeList
-import nejc4s.base.{JavaList, Optional}
+import nejc4s.alias.Nejl
+import nejc4s.base.{Absent, JavaList, Optional, Present}
+
+import scala.annotation.tailrec
 
 package object ast {
   type ArrayCreationLevel = com.github.javaparser.ast.ArrayCreationLevel
@@ -39,13 +42,50 @@ package object ast {
 
 
 
-  private[ast]
-  def identifier(s: SimpleNameNode): Identifier =
-    Identifier.unsafeFromString(s.getIdentifier)
+  import scala.collection.JavaConverters._
 
   private[ast]
-  def simpleName(identifier: Identifier): SimpleNameNode =
+  def identifier(n: SimpleNameNode): Identifier =
+    Identifier.unsafeFromString(n.getIdentifier)
+
+  private[ast]
+  def simpleNameNode(identifier: Identifier): SimpleNameNode =
     SimpleNameNode(identifier)
+
+
+  private[ast]
+  def identifiers(n: NameNode): Nejl[Identifier] = {
+    val builder = Vector.newBuilder[Identifier]
+
+    @tailrec
+    def go(current: NameNode): Unit = {
+      builder += Identifier.unsafeFromString(current.getIdentifier)
+      val next = current.getQualifier
+
+      if (next.isPresent) {
+        go(next.get)
+      }
+    }
+    go(n)
+
+    new Nejl.UnsafeWrapper(builder.result().view.reverse.asJava)
+  }
+
+  private[ast]
+  def nameNode(identifiers: Nejl[Identifier]): NameNode = {
+    val iterator = identifiers.iterator()
+
+    @tailrec
+    def append(base: NameNode): NameNode =
+      if (iterator.hasNext) {
+        append(NameNode(Present(base), iterator.next()))
+      } else {
+        base
+      }
+
+    append(NameNode(Absent(), iterator.next()))
+  }
+
 
   private[ast]
   def nodeList[A <: Node](javaList: JavaList[A]): NodeList[A] =
@@ -56,6 +96,7 @@ package object ast {
       case _ =>
         new NodeList(javaList)
     }
+
 
 
   private[ast]

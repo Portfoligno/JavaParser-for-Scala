@@ -13,7 +13,7 @@ object EnumConstant {
   ): EnumConstant =
     new EnumConstant(
       nodeList(annotations),
-      simpleName(name),
+      simpleNameNode(name),
       nodeList(arguments),
       nodeList(classBody)
     )

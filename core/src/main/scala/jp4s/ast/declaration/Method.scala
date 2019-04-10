@@ -25,7 +25,7 @@ object Method {
       nodeList(annotations),
       nodeList(typeParameters),
       `type`,
-      simpleName(name),
+      simpleNameNode(name),
       nodeList(parameters),
       nodeList(thrownExceptions),
       body.orElseNull,

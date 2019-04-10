@@ -3,24 +3,29 @@ package declaration
 
 import jp4s.ast.`type`.Type
 import jp4s.ast.expression.Annotation
+import nejc4s.alias.Nejl
 import nejc4s.base.JavaList
 
 object ReceiverParameter {
   def apply(
     annotations: JavaList[Annotation],
     `type`: Type,
-    name: NameNode
+    name: Nejl[Identifier]
   ): ReceiverParameter =
     new ReceiverParameter(
       nodeList(annotations),
       `type`,
-      name
+      nameNode(name)
     )
 
-  def unapply(p: ReceiverParameter): Option[(
+  def unapply(p: ReceiverParameter): Some[(
     JavaList[Annotation],
     Type,
-    NameNode
+    Nejl[Identifier]
   )] =
-    Some((p.getAnnotations, p.getType, p.getName))
+    Some((
+      p.getAnnotations,
+      p.getType,
+      identifiers(p.getName)
+    ))
 }

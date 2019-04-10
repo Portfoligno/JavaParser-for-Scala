@@ -87,7 +87,7 @@ object Variable {
             .map(v =>
               new VariableDeclarator(
                 NestingOnName(v.arrayDimensions, `type`),
-                simpleName(v.name),
+                simpleNameNode(v.name),
                 v.initializer.orElseNull
               )
             )
@@ -125,7 +125,9 @@ object Variable {
 
     def unapply(nestedType: Type): Some[(JavaList[JavaList[Annotation]], Type)] = {
       @tailrec
-      def unwrap(dimensions: List[JavaList[Annotation]], currentType: Type): (JavaList[JavaList[Annotation]], Type) =
+      def unwrap(
+        dimensions: List[JavaList[Annotation]], currentType: Type
+      ): (JavaList[JavaList[Annotation]], Type) =
         currentType match {
           case ArrayType(componentType, ArrayType.Origin.Name, annotations) =>
             unwrap(annotations :: dimensions, componentType)

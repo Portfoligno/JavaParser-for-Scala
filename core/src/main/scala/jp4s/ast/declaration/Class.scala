@@ -19,7 +19,7 @@ object Class {
       nodeList(modifiers),
       nodeList(annotations),
       false,
-      simpleName(name),
+      simpleNameNode(name),
       nodeList(typeParameters),
       nodeList(extendedTypes),
       nodeList(implementedTypes),

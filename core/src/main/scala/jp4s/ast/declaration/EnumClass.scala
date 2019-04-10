@@ -17,7 +17,7 @@ object EnumClass {
     new EnumClass(
       nodeList(modifiers),
       nodeList(annotations),
-      simpleName(name),
+      simpleNameNode(name),
       nodeList(implementedTypes),
       nodeList(entries),
       nodeList(members)

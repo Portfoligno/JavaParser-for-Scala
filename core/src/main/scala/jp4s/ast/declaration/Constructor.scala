@@ -21,7 +21,7 @@ object Constructor {
       nodeList(modifiers),
       nodeList(annotations),
       nodeList(typeParameters),
-      simpleName(name),
+      simpleNameNode(name),
       nodeList(parameters),
       nodeList(thrownExceptions),
       body,

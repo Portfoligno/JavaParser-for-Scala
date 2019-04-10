@@ -17,7 +17,7 @@ object AnnotationMember {
       nodeList(modifiers),
       nodeList(annotations),
       `type`,
-      simpleName(name),
+      simpleNameNode(name),
       defaultValue.orElse(null)
     )
 

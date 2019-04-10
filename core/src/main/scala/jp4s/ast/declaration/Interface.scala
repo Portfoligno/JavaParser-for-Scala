@@ -19,7 +19,7 @@ object Interface {
       nodeList(modifiers),
       nodeList(annotations),
       true,
-      simpleName(name),
+      simpleNameNode(name),
       nodeList(typeParameters),
       nodeList(extendedTypes),
       nodeList(implementedTypes),
