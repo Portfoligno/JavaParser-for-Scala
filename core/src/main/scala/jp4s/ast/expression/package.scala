@@ -19,4 +19,5 @@ package object expression {
   type FieldAccess = FieldAccessExpr
   type FloatingPointLiteral = DoubleLiteralExpr
   type InstanceOf = InstanceOfExpr
+  type IntegerLiteral = IntegerLiteralExpr
 }
