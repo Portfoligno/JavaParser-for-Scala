@@ -27,4 +27,5 @@ package object expression {
   type MarkerAnnotation = MarkerAnnotationExpr
   type MemberValuePair = com.github.javaparser.ast.expr.MemberValuePair
   type MethodCall = MethodCallExpr
+  type MethodReference = MethodReferenceExpr
 }
