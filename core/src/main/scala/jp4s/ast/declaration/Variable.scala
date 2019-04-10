@@ -62,13 +62,12 @@ object Variable {
 
   private[declaration]
   def nejl(variables: NodeList[VariableDeclarator]): Nejl[Variable] =
-    new VariableNejlProxy(variables)
+    VariableNejlProxy(variables)
 
   private[declaration]
   def nodeList(`type`: Type, variables: Nejl[Variable]): NodeList[VariableDeclarator] =
     variables match {
-      case p: VariableNejlProxy if p
-        .source
+      case VariableNejlProxy(source) if source
         .view
         .map(_.getType)
         .forall {
@@ -76,7 +75,7 @@ object Variable {
           case _ => false
         }
       =>
-        p.source
+        source
 
       case _ =>
         import jp4s.syntax.optional._
@@ -97,7 +96,7 @@ object Variable {
 
 
   private
-  class VariableNejlProxy(val source: NodeList[VariableDeclarator])
+  case class VariableNejlProxy(source: NodeList[VariableDeclarator])
     extends Nejl.UnsafeProxy[Variable]
       with JavaList[Variable]
       with JavaCollection[Variable] {
