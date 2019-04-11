@@ -13,6 +13,7 @@ package object statement {
   type ForEach = ForEachStmt
   type If = IfStmt
   type Label = LabeledStmt
+  type LocalClass = LocalClassDeclarationStmt
 
   type Noop = EmptyStmt
 
