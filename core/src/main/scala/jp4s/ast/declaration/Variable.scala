@@ -35,12 +35,14 @@ object Variable {
 
 
 
+  private
   case class Pure(
     arrayDimensions: JavaList[JavaList[Annotation]],
     name: Identifier,
     initializer: Optional[Expression]
   ) extends Variable
 
+  private
   case class ByNode(v: VariableDeclarator) extends Variable {
     override
     def arrayDimensions: JavaList[JavaList[Annotation]] =
