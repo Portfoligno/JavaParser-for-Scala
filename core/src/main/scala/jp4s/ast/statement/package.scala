@@ -10,13 +10,14 @@ package object statement {
   type Continue = ContinueStmt
   type DeclareLocal = LocalClassDeclarationStmt
   type Do = DoStmt
-  type ExplicitConstructorInvocation = ExplicitConstructorInvocationStmt
   type ForEach = ForEachStmt
   type If = IfStmt
   type Label = LabeledStmt
   type Return = ReturnStmt
 
   type Noop = EmptyStmt
+
+  type SpecialConstructorInvocation = ExplicitConstructorInvocationStmt
 
   type Statement = com.github.javaparser.ast.stmt.Statement
 }

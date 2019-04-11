@@ -12,21 +12,21 @@ object ThisInvocation {
     typeArguments: Optional[JavaList[Type]],
     expression: Optional[Expression],
     arguments: JavaList[Expression]
-  ): ExplicitConstructorInvocation =
-    new ExplicitConstructorInvocation(
+  ): SpecialConstructorInvocation =
+    new SpecialConstructorInvocation(
       typeArguments.transform(nodeList).orElseNull,
       true,
       expression.orElseNull,
       nodeList(arguments)
     )
 
-  def unapply(i: ExplicitConstructorInvocation): Option[(
+  def unapply(i: SpecialConstructorInvocation): Option[(
     Optional[JavaList[Type]],
     Optional[Expression],
     JavaList[Expression]
   )] =
     if (i.isThis) {
-      ExplicitConstructorInvocation.unapply(i)
+      SpecialConstructorInvocation.unapply(i)
     } else {
       None
     }
