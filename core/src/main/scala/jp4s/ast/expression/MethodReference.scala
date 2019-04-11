@@ -27,7 +27,7 @@ object MethodReference {
     Some((
       r.getScope match {
         case t: TypeExpr => Left(t.getType)
-        case x: _ => Right(x)
+        case x @ _ => Right(x)
       },
       r.getTypeArguments.covary,
       Identifier.unsafeFromString(r.getIdentifier)

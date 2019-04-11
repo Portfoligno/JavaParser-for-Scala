@@ -2,7 +2,7 @@ package jp4s
 
 import com.github.javaparser.ast.NodeList
 import nejc4s.alias.Nejl
-import nejc4s.base.{Absent, JavaList, Optional, Present}
+import nejc4s.base.{Absent, JavaCollection, JavaList, Optional, Present}
 
 import scala.annotation.tailrec
 
@@ -88,7 +88,7 @@ package object ast {
 
 
   private[ast]
-  def nejl[A](nodeList: NodeList[A]): Nejl[A] =
+  def nejl[A <: Node](nodeList: NodeList[A]): Nejl[A] =
     NodeListNejlProxy(nodeList)
 
   private[ast]
@@ -129,7 +129,10 @@ package object ast {
 
 
   private
-  case class NodeListNejlProxy[A](
+  case class NodeListNejlProxy[A <: Node](
     override protected val delegate: NodeList[A]
-  ) extends Nejl.UnsafeProxy[A]
+  )
+    extends Nejl.UnsafeProxy[A]
+      with JavaList[A]
+      with JavaCollection[A]
 }
