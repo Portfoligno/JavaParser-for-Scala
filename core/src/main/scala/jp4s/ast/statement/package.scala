@@ -10,6 +10,7 @@ package object statement {
   type Continue = ContinueStmt
   type Do = DoStmt
   type ExplicitConstructorCall = ExplicitConstructorInvocationStmt
+  type ForEach = ForEachStmt
 
   type Noop = EmptyStmt
 
