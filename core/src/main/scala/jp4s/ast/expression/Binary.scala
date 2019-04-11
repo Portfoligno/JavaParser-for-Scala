@@ -32,7 +32,7 @@ object Binary {
 
 
   private[expression]
-  class Factory(operator: Operator) {
+  class Factory(val operator: Operator) {
     def apply(left: Expression, right: Expression): Binary =
       new Binary(left, right, operator)
 

@@ -21,7 +21,7 @@ object Unary {
 
 
   private[expression]
-  class Factory(operator: Operator) {
+  class Factory(val operator: Operator) {
     def apply(expression: Expression): Unary =
       new Unary(expression, operator)
 

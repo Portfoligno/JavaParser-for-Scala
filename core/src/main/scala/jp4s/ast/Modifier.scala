@@ -22,7 +22,7 @@ object Modifier {
 
 
   private[ast]
-  class Factory(keyword: Keyword) {
+  class Factory(val keyword: Keyword) {
     def apply(): Modifier =
       new Modifier(keyword)
 
