@@ -12,6 +12,7 @@ package object statement {
   type ExplicitConstructorCall = ExplicitConstructorInvocationStmt
   type ForEach = ForEachStmt
   type If = IfStmt
+  type Label = LabeledStmt
 
   type Noop = EmptyStmt
 
