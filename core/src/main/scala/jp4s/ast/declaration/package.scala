@@ -23,7 +23,7 @@ package object declaration {
   type Class <: ClassOrInterfaceDeclaration with Class.Tag
 
   object Class extends ClassFactory {
-    private[base] trait Tag extends Any
+    private[ast] trait Tag extends Any
 
     def fromClassOrInterface(c: ClassOrInterface): Option[Class] =
       if (!c.isInterface) {
@@ -44,7 +44,7 @@ package object declaration {
   type Interface <: ClassOrInterfaceDeclaration with Interface.Tag
 
   object Interface extends InterfaceFactory {
-    private[base] trait Tag extends Any
+    private[ast] trait Tag extends Any
 
     def fromClassOrInterface(c: ClassOrInterface): Option[Interface] =
       if (c.isInterface) {
