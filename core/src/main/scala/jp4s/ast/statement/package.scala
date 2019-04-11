@@ -12,6 +12,7 @@ package object statement {
   type DeclareLocal = LocalClassDeclarationStmt
   type Do = DoStmt
   type Execution = ExpressionStmt
+  type For = ForStmt
   type ForEach = ForEachStmt
   type If = IfStmt
   type Label = LabeledStmt
