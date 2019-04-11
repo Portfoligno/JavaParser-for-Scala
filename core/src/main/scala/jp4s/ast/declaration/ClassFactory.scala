@@ -16,8 +16,8 @@ trait ClassFactory {
     extendedType: Optional[ClassOrInterfaceType],
     implementedTypes: JavaList[ClassOrInterfaceType],
     members: JavaList[Body]
-  ): ClassOrInterface =
-    new ClassOrInterface(
+  ): Class =
+    Class.unsafeFromClassOrInterface(new ClassOrInterface(
       nodeList(modifiers),
       nodeList(annotations),
       false,
@@ -29,7 +29,7 @@ trait ClassFactory {
       },
       nodeList(implementedTypes),
       nodeList(members)
-    )
+    ))
 
   def unapply(c: ClassOrInterface): Option[(
     JavaList[Modifier],
