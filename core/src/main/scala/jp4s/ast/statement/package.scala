@@ -9,7 +9,7 @@ package object statement {
   type CatchClause = com.github.javaparser.ast.stmt.CatchClause
   type Continue = ContinueStmt
   type Do = DoStmt
-  type ExplicitConstructorInvocation = ExplicitConstructorInvocationStmt
+  type ExplicitConstructorCall = ExplicitConstructorInvocationStmt
 
   type Noop = EmptyStmt
 

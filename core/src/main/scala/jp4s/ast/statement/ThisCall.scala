@@ -5,28 +5,28 @@ import jp4s.ast.`type`.Type
 import jp4s.ast.expression.Expression
 import nejc4s.base.{JavaList, Optional}
 
-object ThisInvocation {
+object ThisCall {
   import jp4s.syntax.optional._
 
   def apply(
     typeArguments: Optional[JavaList[Type]],
     expression: Optional[Expression],
     arguments: JavaList[Expression]
-  ): ExplicitConstructorInvocation =
-    new ExplicitConstructorInvocation(
+  ): ExplicitConstructorCall =
+    new ExplicitConstructorCall(
       typeArguments.transform(nodeList).orElseNull,
       true,
       expression.orElseNull,
       nodeList(arguments)
     )
 
-  def unapply(i: ExplicitConstructorInvocation): Option[(
+  def unapply(i: ExplicitConstructorCall): Option[(
     Optional[JavaList[Type]],
     Optional[Expression],
     JavaList[Expression]
   )] =
     if (i.isThis) {
-      ExplicitConstructorInvocation.unapply(i)
+      ExplicitConstructorCall.unapply(i)
     } else {
       None
     }
