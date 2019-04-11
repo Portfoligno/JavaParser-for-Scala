@@ -1,6 +1,7 @@
 package jp4s.ast
 
 import com.github.javaparser.ast.expr._
+import com.github.javaparser.ast.nodeTypes.SwitchNode
 
 package object expression {
   type Annotation = AnnotationExpr
@@ -35,6 +36,7 @@ package object expression {
   type SingleMemberAnnotation = SingleMemberAnnotationExpr
   type StringLiteral = StringLiteralExpr
   type SuperAccess = SuperExpr
+  type Switch = SwitchNode
   type SwitchExpression = SwitchExpr
   type ThisAccess = ThisExpr
   type Unary = UnaryExpr
