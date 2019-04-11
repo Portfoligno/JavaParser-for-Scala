@@ -14,11 +14,8 @@ package object statement {
   type ForEach = ForEachStmt
   type If = IfStmt
   type Label = LabeledStmt
-  type Return = ReturnStmt
-
   type Noop = EmptyStmt
-
+  type Return = ReturnStmt
   type SpecialConstructorInvocation = ExplicitConstructorInvocationStmt
-
   type Statement = com.github.javaparser.ast.stmt.Statement
 }
