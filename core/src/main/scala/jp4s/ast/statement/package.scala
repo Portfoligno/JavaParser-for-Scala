@@ -8,12 +8,12 @@ package object statement {
   type Break = BreakStmt
   type CatchClause = com.github.javaparser.ast.stmt.CatchClause
   type Continue = ContinueStmt
+  type DeclareLocal = LocalClassDeclarationStmt
   type Do = DoStmt
   type ExplicitConstructorCall = ExplicitConstructorInvocationStmt
   type ForEach = ForEachStmt
   type If = IfStmt
   type Label = LabeledStmt
-  type LocalClass = LocalClassDeclarationStmt
   type Return = ReturnStmt
 
   type Noop = EmptyStmt
