@@ -1,6 +1,6 @@
 package jp4s.ast
 
-import com.github.javaparser.ast.stmt.{AssertStmt, BlockStmt, BreakStmt, ContinueStmt, DoStmt}
+import com.github.javaparser.ast.stmt._
 
 package object statement {
   type Assert = AssertStmt
@@ -9,6 +9,8 @@ package object statement {
   type CatchClause = com.github.javaparser.ast.stmt.CatchClause
   type Continue = ContinueStmt
   type Do = DoStmt
+
+  type Noop = EmptyStmt
 
   type Statement = com.github.javaparser.ast.stmt.Statement
 }
