@@ -20,6 +20,7 @@ package object statement {
   type SpecialConstructorInvocation = ExplicitConstructorInvocationStmt
   type Statement = com.github.javaparser.ast.stmt.Statement
   type SwitchStatement = SwitchStmt
+  type Synchronized = SynchronizedStmt
 
   type Throw = ThrowStmt
 }
