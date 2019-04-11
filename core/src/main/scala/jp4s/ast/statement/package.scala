@@ -23,4 +23,5 @@ package object statement {
   type Synchronized = SynchronizedStmt
   type Throw = ThrowStmt
   type Try = TryStmt
+  type While = WhileStmt
 }
