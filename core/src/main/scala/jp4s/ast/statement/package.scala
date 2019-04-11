@@ -6,7 +6,8 @@ package object statement {
   type Assert = AssertStmt
   type Block = BlockStmt
   type Break = BreakStmt
-  type Catch = com.github.javaparser.ast.stmt.CatchClause
+  type Case = SwitchEntry
+  type Catch = CatchClause
   type Continue = ContinueStmt
   type DeclareLocal = LocalClassDeclarationStmt
   type Do = DoStmt

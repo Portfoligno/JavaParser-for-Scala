@@ -1,16 +1,16 @@
 package jp4s.ast
 package expression
 
-import com.github.javaparser.ast.stmt.SwitchEntry
+import jp4s.ast.statement.Case
 import nejc4s.base.JavaList
 
 object Switch {
-  def apply(selector: Expression, entries: JavaList[SwitchEntry]): Switch =
+  def apply(selector: Expression, entries: JavaList[Case]): Switch =
     new Switch(selector, nodeList(entries))
 
   def unapply(s: Switch): Some[(
     Expression,
-    JavaList[SwitchEntry]
+    JavaList[Case]
   )] =
     Some((s.getSelector, s.getEntries))
 }
