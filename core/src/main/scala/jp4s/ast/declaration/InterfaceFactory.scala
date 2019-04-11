@@ -1,31 +1,28 @@
 package jp4s.ast
 package declaration
 
-import com.github.javaparser.ast.NodeList
 import jp4s.ast.`type`.{ClassOrInterfaceType, TypeParameter}
 import jp4s.ast.expression.Annotation
-import nejc4s.base.{Absent, JavaList, Optional, Present}
+import nejc4s.base.JavaList
 
-object Class {
+private[declaration]
+trait InterfaceFactory {
   def apply(
     modifiers: JavaList[Modifier],
     annotations: JavaList[Annotation],
     name: Identifier,
     typeParameters: JavaList[TypeParameter],
-    extendedType: Optional[ClassOrInterfaceType],
+    extendedTypes: JavaList[ClassOrInterfaceType],
     implementedTypes: JavaList[ClassOrInterfaceType],
     members: JavaList[Body]
   ): ClassOrInterface =
     new ClassOrInterface(
       nodeList(modifiers),
       nodeList(annotations),
-      false,
+      true,
       simpleNameNode(name),
       nodeList(typeParameters),
-      extendedType match {
-        case Present(t) => new NodeList(t)
-        case _ => new NodeList()
-      },
+      nodeList(extendedTypes),
       nodeList(implementedTypes),
       nodeList(members)
     )
@@ -35,11 +32,11 @@ object Class {
     JavaList[Annotation],
     Identifier,
     JavaList[TypeParameter],
-    Optional[ClassOrInterfaceType],
+    JavaList[ClassOrInterfaceType],
     JavaList[ClassOrInterfaceType],
     JavaList[Body]
   )] =
-    if (c.isInterface) {
+    if (!c.isInterface) {
       None
     } else {
       Some((
@@ -47,11 +44,7 @@ object Class {
         c.getAnnotations,
         identifier(c.getName),
         c.getTypeParameters,
-        c.getExtendedTypes match {
-          case JavaList() => Absent()
-          case JavaList(t) => Present(t)
-          case r @ _ => throw new IllegalArgumentException(String.valueOf(r))
-        },
+        c.getExtendedTypes,
         c.getImplementedTypes,
         c.getMembers
       ))
