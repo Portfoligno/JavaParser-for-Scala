@@ -11,6 +11,7 @@ package object statement {
   type Do = DoStmt
   type ExplicitConstructorCall = ExplicitConstructorInvocationStmt
   type ForEach = ForEachStmt
+  type If = IfStmt
 
   type Noop = EmptyStmt
 
