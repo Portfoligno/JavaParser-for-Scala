@@ -10,7 +10,7 @@ package object statement {
   type Continue = ContinueStmt
   type DeclareLocal = LocalClassDeclarationStmt
   type Do = DoStmt
-  type ExplicitConstructorCall = ExplicitConstructorInvocationStmt
+  type ExplicitConstructorInvocation = ExplicitConstructorInvocationStmt
   type ForEach = ForEachStmt
   type If = IfStmt
   type Label = LabeledStmt

@@ -4,10 +4,10 @@ import jp4s.ast.`type`.Type
 import jp4s.ast.expression.Expression
 import nejc4s.base.{JavaList, Optional}
 
-object ExplicitConstructorCall {
+object ExplicitConstructorInvocation {
   import jp4s.syntax.optional._
 
-  def unapply(i: ExplicitConstructorCall): Some[(
+  def unapply(i: ExplicitConstructorInvocation): Some[(
     Optional[JavaList[Type]],
     Optional[Expression],
     JavaList[Expression]
