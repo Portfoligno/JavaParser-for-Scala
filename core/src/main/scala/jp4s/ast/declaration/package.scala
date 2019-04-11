@@ -9,8 +9,8 @@ package object declaration {
   type Callable = CallableDeclaration[_ <: CallableDeclaration[_]]
   type ClassOrInterface = ClassOrInterfaceDeclaration
   type Constructor = ConstructorDeclaration
+  type Enum = EnumConstantDeclaration
   type EnumClass = EnumDeclaration
-  type EnumConstant = EnumConstantDeclaration
   type Fields = FieldDeclaration
   type Initializer = InitializerDeclaration
   type Method = MethodDeclaration

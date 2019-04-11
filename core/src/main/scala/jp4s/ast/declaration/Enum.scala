@@ -4,21 +4,21 @@ package declaration
 import jp4s.ast.expression.{Annotation, Expression}
 import nejc4s.base.JavaList
 
-object EnumConstant {
+object Enum {
   def apply(
     annotations: JavaList[Annotation],
     name: Identifier,
     arguments: JavaList[Expression],
     classBody: JavaList[Body]
-  ): EnumConstant =
-    new EnumConstant(
+  ): Enum =
+    new Enum(
       nodeList(annotations),
       simpleNameNode(name),
       nodeList(arguments),
       nodeList(classBody)
     )
 
-  def unapply(c: EnumConstant): Some[(
+  def unapply(c: Enum): Some[(
     JavaList[Annotation],
     Identifier,
     JavaList[Expression],

@@ -11,7 +11,7 @@ object EnumClass {
     annotations: JavaList[Annotation],
     name: Identifier,
     implementedTypes: JavaList[ClassOrInterfaceType],
-    entries: JavaList[EnumConstant],
+    entries: JavaList[Enum],
     members: JavaList[Body]
   ): EnumClass =
     new EnumClass(
@@ -28,7 +28,7 @@ object EnumClass {
     JavaList[Annotation],
     Identifier,
     JavaList[ClassOrInterfaceType],
-    JavaList[EnumConstant],
+    JavaList[Enum],
     JavaList[Body]
   )] =
     Some((
