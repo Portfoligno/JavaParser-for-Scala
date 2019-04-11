@@ -1,6 +1,6 @@
 package jp4s.ast.statement
 
-import com.github.javaparser.ast.expr.Expression
+import jp4s.ast.expression.Expression
 
 object Execution {
   def apply(expression: Expression): Execution =

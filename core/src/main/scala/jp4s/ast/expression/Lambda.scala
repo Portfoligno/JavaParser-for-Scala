@@ -1,8 +1,8 @@
 package jp4s.ast
 package expression
 
-import com.github.javaparser.ast.body.Parameter
-import com.github.javaparser.ast.stmt.Statement
+import jp4s.ast.declaration.Parameter
+import jp4s.ast.statement.Statement
 import nejc4s.base.JavaList
 
 object Lambda {

@@ -1,7 +1,7 @@
 package jp4s.ast
 package expression
 
-import com.github.javaparser.ast.`type`.Type
+import jp4s.ast.`type`.Type
 import nejc4s.base.{JavaList, Optional}
 
 object FieldAccess {
