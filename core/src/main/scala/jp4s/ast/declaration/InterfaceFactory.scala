@@ -1,6 +1,7 @@
 package jp4s.ast
 package declaration
 
+import com.github.javaparser.ast.NodeList
 import jp4s.ast.`type`.{ClassOrInterfaceType, TypeParameter}
 import jp4s.ast.expression.Annotation
 import nejc4s.base.JavaList
@@ -13,7 +14,6 @@ trait InterfaceFactory {
     name: Identifier,
     typeParameters: JavaList[TypeParameter],
     extendedTypes: JavaList[ClassOrInterfaceType],
-    implementedTypes: JavaList[ClassOrInterfaceType],
     members: JavaList[Body]
   ): Interface =
     Interface.unsafeFromClassOrInterface(new ClassOrInterface(
@@ -23,7 +23,7 @@ trait InterfaceFactory {
       simpleNameNode(name),
       nodeList(typeParameters),
       nodeList(extendedTypes),
-      nodeList(implementedTypes),
+      new NodeList(),
       nodeList(members)
     ))
 
@@ -33,19 +33,19 @@ trait InterfaceFactory {
     Identifier,
     JavaList[TypeParameter],
     JavaList[ClassOrInterfaceType],
-    JavaList[ClassOrInterfaceType],
     JavaList[Body]
   )] =
     if (!c.isInterface) {
       None
     } else {
+      require(c.getImplementedTypes.isEmpty)
+
       Some((
         c.getModifiers,
         c.getAnnotations,
         identifier(c.getName),
         c.getTypeParameters,
         c.getExtendedTypes,
-        c.getImplementedTypes,
         c.getMembers
       ))
     }
