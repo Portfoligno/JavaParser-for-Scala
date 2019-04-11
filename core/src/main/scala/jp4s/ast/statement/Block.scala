@@ -1,7 +1,6 @@
 package jp4s.ast
 package statement
 
-import com.github.javaparser.ast.stmt.Statement
 import nejc4s.base.JavaList
 
 object Block {
