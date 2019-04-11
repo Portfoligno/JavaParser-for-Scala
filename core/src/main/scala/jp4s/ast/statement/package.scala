@@ -21,6 +21,6 @@ package object statement {
   type Statement = com.github.javaparser.ast.stmt.Statement
   type SwitchStatement = SwitchStmt
   type Synchronized = SynchronizedStmt
-
   type Throw = ThrowStmt
+  type Try = TryStmt
 }
