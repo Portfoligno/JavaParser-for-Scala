@@ -1,20 +1,20 @@
 package jp4s.ast
-package expression
+package statement
 
-import jp4s.ast.statement.Case
+import jp4s.ast.expression.Expression
 import nejc4s.base.JavaList
 
-object Switch {
+object SwitchStatement {
   def apply(
     selector: Expression,
     entries: JavaList[Case]
-  ): Switch =
-    new Switch(
+  ): SwitchStatement =
+    new SwitchStatement(
       selector,
       nodeList(entries)
     )
 
-  def unapply(s: Switch): Some[(
+  def unapply(s: SwitchStatement): Some[(
     Expression,
     JavaList[Case]
   )] =

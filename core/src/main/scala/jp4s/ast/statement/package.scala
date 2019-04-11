@@ -19,6 +19,7 @@ package object statement {
   type Return = ReturnStmt
   type SpecialConstructorInvocation = ExplicitConstructorInvocationStmt
   type Statement = com.github.javaparser.ast.stmt.Statement
+  type SwitchStatement = SwitchStmt
 
   type Throw = ThrowStmt
 }
