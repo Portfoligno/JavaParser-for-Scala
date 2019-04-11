@@ -38,4 +38,5 @@ package object expression {
   type Switch = SwitchExpr
   type ThisAccess = ThisExpr
   type Unary = UnaryExpr
+  type Variables = VariableDeclarationExpr
 }

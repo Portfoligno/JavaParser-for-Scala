@@ -60,11 +60,15 @@ object Variable {
   import scala.collection.JavaConverters._
   import scala.collection.convert.ImplicitConversionsToScala._
 
-  private[declaration]
+  private[ast]
+  def `type`(variables: NodeList[VariableDeclarator]): Type =
+    variables.iterator.next().getType
+
+  private[ast]
   def nejl(variables: NodeList[VariableDeclarator]): Nejl[Variable] =
     VariableNejlProxy(variables)
 
-  private[declaration]
+  private[ast]
   def nodeList(`type`: Type, variables: Nejl[Variable]): NodeList[VariableDeclarator] =
     variables match {
       case VariableNejlProxy(source) if source
