@@ -4,17 +4,17 @@ package expression
 import jp4s.ast.statement.Case
 import nejc4s.base.JavaList
 
-object Switch {
+object SwitchExpression {
   def apply(
     selector: Expression,
     entries: JavaList[Case]
-  ): Switch =
-    new Switch(
+  ): SwitchExpression =
+    new SwitchExpression(
       selector,
       nodeList(entries)
     )
 
-  def unapply(s: Switch): Some[(
+  def unapply(s: SwitchExpression): Some[(
     Expression,
     JavaList[Case]
   )] =

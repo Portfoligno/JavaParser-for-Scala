@@ -35,7 +35,7 @@ package object expression {
   type SingleMemberAnnotation = SingleMemberAnnotationExpr
   type StringLiteral = StringLiteralExpr
   type SuperAccess = SuperExpr
-  type Switch = SwitchExpr
+  type SwitchExpression = SwitchExpr
   type ThisAccess = ThisExpr
   type Unary = UnaryExpr
   type Variables = VariableDeclarationExpr
