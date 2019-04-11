@@ -14,6 +14,7 @@ package object statement {
   type If = IfStmt
   type Label = LabeledStmt
   type LocalClass = LocalClassDeclarationStmt
+  type Return = ReturnStmt
 
   type Noop = EmptyStmt
 
