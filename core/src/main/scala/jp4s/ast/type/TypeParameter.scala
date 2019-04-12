@@ -12,6 +12,6 @@ object TypeParameter {
   ): TypeParameter =
     new TypeParameter(simpleNameNode(name), nodeList(typeBound), nodeList(annotations))
 
-  def unapply(p: TypeParameter): Option[(Identifier, JavaList[ClassOrInterfaceType], JavaList[Annotation])] =
+  def unapply(p: TypeParameter): Some[(Identifier, JavaList[ClassOrInterfaceType], JavaList[Annotation])] =
     Some((identifier(p.getName), p.getTypeBound, p.getAnnotations))
 }

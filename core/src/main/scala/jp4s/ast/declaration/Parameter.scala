@@ -23,7 +23,7 @@ object Parameter {
       simpleNameNode(name)
     )
 
-  def unapply(p: Parameter): Option[(
+  def unapply(p: Parameter): Some[(
     JavaList[Modifier],
     JavaList[Annotation],
     Type,

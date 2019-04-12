@@ -32,7 +32,7 @@ object Method {
       receiverParameter.orElseNull
     )
 
-  def unapply(m: Method): Option[(
+  def unapply(m: Method): Some[(
     JavaList[Modifier],
     JavaList[Annotation],
     JavaList[TypeParameter],
