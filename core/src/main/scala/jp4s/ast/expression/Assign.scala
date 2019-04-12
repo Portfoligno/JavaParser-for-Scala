@@ -24,8 +24,7 @@ object Assign {
     Some((a.getTarget, a.getValue))
 
 
-  private[expression]
-  class Factory(val operator: Operator) {
+  sealed class Factory(val operator: Operator) {
     def apply(target: Expression, value: Expression): Assign =
       new Assign(target, value, operator)
 

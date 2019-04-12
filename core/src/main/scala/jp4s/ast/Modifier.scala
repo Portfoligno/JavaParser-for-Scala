@@ -21,8 +21,7 @@ object Modifier {
   object PackagePrivate extends Factory(PACKAGE_PRIVATE)
 
 
-  private[ast]
-  class Factory(val keyword: Keyword) {
+  sealed class Factory(val keyword: Keyword) {
     def apply(): Modifier =
       new Modifier(keyword)
 

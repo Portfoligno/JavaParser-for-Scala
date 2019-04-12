@@ -20,8 +20,7 @@ object Unary {
     Some(u.getExpression)
 
 
-  private[expression]
-  class Factory(val operator: Operator) {
+  sealed class Factory(val operator: Operator) {
     def apply(expression: Expression): Unary =
       new Unary(expression, operator)
 
