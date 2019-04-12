@@ -15,7 +15,8 @@ object CompilationUnit {
       packageDeclaration,
       nodeList(imports),
       nodeList(types),
-      module)
+      module
+    )
 
   def unapply(u: CompilationUnit): Some[(
     Optional[Package],
