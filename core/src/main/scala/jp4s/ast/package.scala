@@ -48,6 +48,7 @@ package object ast {
 
 
   import scala.collection.JavaConverters._
+  import scala.collection.convert.ImplicitConversionsToScala._
 
   private[ast]
   def identifier(n: SimpleNameNode): Identifier =
@@ -94,7 +95,7 @@ package object ast {
 
   private[ast]
   def nejl[A <: Node](nodeList: NodeList[A]): Nejl[A] =
-    NodeListNejlProxy(nodeList)
+    NodeNejlProxy(nodeList)
 
   private[ast]
   def nodeList[A <: Node](javaList: JavaList[A]): NodeList[A] =
@@ -102,11 +103,25 @@ package object ast {
       case nodeList: NodeList[A] =>
         nodeList
 
-      case NodeListNejlProxy(nodeList) =>
+      case NodeNejlProxy(nodeList) =>
         nodeList
 
       case _ =>
         new NodeList(javaList)
+    }
+
+  private[ast]
+  def nameNodesAsIdentifiers(nameNodes: NodeList[NameNode]): JavaList[Nejl[Identifier]] =
+    NameNodeNejlProxy(nameNodes)
+
+  private[ast]
+  def identifiersAsNameNodes(identifiers: JavaList[Nejl[Identifier]]): NodeList[NameNode] =
+    identifiers match {
+      case NameNodeNejlProxy(nodeList) =>
+        nodeList
+
+      case _ =>
+        new NodeList(identifiers.map(nameNode).asJava)
     }
 
 
@@ -134,10 +149,22 @@ package object ast {
 
 
   private
-  case class NodeListNejlProxy[A <: Node](
+  case class NodeNejlProxy[A <: Node](
     override protected val delegate: NodeList[A]
   )
     extends Nejl.UnsafeProxy[A]
       with JavaList[A]
       with JavaCollection[A]
+
+  private
+  case class NameNodeNejlProxy(
+    source: NodeList[NameNode]
+  )
+    extends Nejl.UnsafeProxy[Nejl[Identifier]]
+      with JavaList[Nejl[Identifier]]
+      with JavaCollection[Nejl[Identifier]] {
+    protected
+    override def delegate: JavaList[Nejl[Identifier]] =
+      source.view.map(identifiers).asJava
+  }
 }
