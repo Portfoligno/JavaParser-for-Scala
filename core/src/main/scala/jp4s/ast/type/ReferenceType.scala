@@ -5,5 +5,5 @@ import nejc4s.base.JavaList
 
 object ReferenceType {
   def unapply(t: ReferenceType): Some[JavaList[Annotation]] =
-    Some(t.getAnnotations)
+    Type.unapply(t)
 }
