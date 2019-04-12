@@ -5,17 +5,19 @@ import jp4s.ast.declaration.{Import, Package, TypeBody}
 import nejc4s.base.{JavaList, Optional}
 
 object CompilationUnit {
+  import jp4s.syntax.optional._
+
   def apply(
-    packageDeclaration: Package,
+    packageDeclaration: Optional[Package],
     imports: JavaList[Import],
     types: JavaList[TypeBody],
-    module: ModuleDeclaration
+    module: Optional[ModuleDeclaration]
   ): CompilationUnit =
     new CompilationUnit(
-      packageDeclaration,
+      packageDeclaration.orElseNull,
       nodeList(imports),
       nodeList(types),
-      module
+      module.orElseNull
     )
 
   def unapply(u: CompilationUnit): Some[(
