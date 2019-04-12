@@ -1,5 +1,6 @@
 package jp4s.ast
 
+import com.github.javaparser.ast.ImportDeclaration
 import com.github.javaparser.ast.body._
 
 package object declaration {
@@ -12,6 +13,7 @@ package object declaration {
   type Enum = EnumConstantDeclaration
   type EnumClass = EnumDeclaration
   type Fields = FieldDeclaration
+  type Import = ImportDeclaration
   type Initializer = InitializerDeclaration
   type Method = MethodDeclaration
   type Parameter = com.github.javaparser.ast.body.Parameter
