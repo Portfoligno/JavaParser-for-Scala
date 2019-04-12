@@ -5,14 +5,13 @@ import com.github.javaparser.ast.NodeList
 import com.github.javaparser.ast.stmt.SwitchEntry
 import com.github.javaparser.ast.stmt.SwitchEntry.Type._
 import jp4s.ast.expression.Expression
-import nejc4s.alias.Nejl
 import nejc4s.base.JavaList
 
 object Case {
   type Type = SwitchEntry.Type
 
   def apply(
-    labels: Nejl[Expression],
+    labels: JavaList[Expression],
     body: Either[JavaList[Statement], Statement]
   ): Case =
     body match {
@@ -38,11 +37,11 @@ object Case {
     }
 
   def unapply(a: Case): Some[(
-    Nejl[Expression],
+    JavaList[Expression],
     Either[JavaList[Statement], Statement]
   )] =
     Some((
-      nejl(a.getLabels),
+      a.getLabels,
       (
         a.getType match {
           case STATEMENT_GROUP => Left(a.getStatements)
