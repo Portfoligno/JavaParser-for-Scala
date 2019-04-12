@@ -1,7 +1,7 @@
 package jp4s.ast
 
-import com.github.javaparser.ast.ImportDeclaration
 import com.github.javaparser.ast.body._
+import com.github.javaparser.ast.{ImportDeclaration, PackageDeclaration}
 
 package object declaration {
   type AnnotationInterface = AnnotationDeclaration
@@ -16,14 +16,13 @@ package object declaration {
   type Import = ImportDeclaration
   type Initializer = InitializerDeclaration
   type Method = MethodDeclaration
-  type PackageDeclaration = com.github.javaparser.ast.PackageDeclaration
+  type Package = PackageDeclaration
   type Parameter = com.github.javaparser.ast.body.Parameter
   type ReceiverParameter = com.github.javaparser.ast.body.ReceiverParameter
   type TypeBody = TypeDeclaration[_ <: TypeDeclaration[_]]
 
 
-  type Package = PackageDeclaration
-  val Package: PackageDeclaration.type = PackageDeclaration
+  object Package extends PackageFactory
 
 
   type Class <: ClassOrInterfaceDeclaration with Class.Tag

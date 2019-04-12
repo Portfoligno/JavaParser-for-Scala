@@ -5,7 +5,8 @@ import jp4s.ast.expression.Annotation
 import nejc4s.alias.Nejl
 import nejc4s.base.JavaList
 
-object PackageDeclaration {
+private[declaration]
+trait PackageFactory {
   def apply(
     annotations: JavaList[Annotation],
     name: Nejl[Identifier]
