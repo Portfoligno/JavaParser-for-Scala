@@ -21,6 +21,10 @@ object Modifier {
   object PackagePrivate extends Factory(PACKAGE_PRIVATE)
 
 
+  def unapply(m: Modifier): Boolean =
+    true
+
+
   sealed class Factory(val keyword: Keyword) {
     def apply(): Modifier =
       new Modifier(keyword)
