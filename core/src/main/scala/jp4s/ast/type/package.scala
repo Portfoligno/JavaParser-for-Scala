@@ -10,4 +10,5 @@ package object `type` {
   type TypeParameter = com.github.javaparser.ast.`type`.TypeParameter
   type UnionType = com.github.javaparser.ast.`type`.UnionType
   type VarType = com.github.javaparser.ast.`type`.VarType
+  type VoidType = com.github.javaparser.ast.`type`.VoidType
 }
