@@ -7,7 +7,6 @@ import nejc4s.base.{Absent, JavaCollection, JavaList, Optional, Present}
 import scala.annotation.tailrec
 
 package object ast {
-  type ArrayCreationLevel = com.github.javaparser.ast.ArrayCreationLevel
   type Modifier = com.github.javaparser.ast.Modifier
   type NameNode = com.github.javaparser.ast.expr.Name
   type Node = com.github.javaparser.ast.Node

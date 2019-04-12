@@ -7,6 +7,7 @@ package object expression {
   type Annotation = AnnotationExpr
   type ArrayAccess = ArrayAccessExpr
   type ArrayCreation = ArrayCreationExpr
+  type ArrayCreationLevel = com.github.javaparser.ast.ArrayCreationLevel
   type ArrayInitializer = ArrayInitializerExpr
   type Assign = AssignExpr
   type Binary = BinaryExpr
