@@ -1,6 +1,6 @@
 package jp4s.ast
 
-import com.github.javaparser.ast.ImportDeclaration
+import com.github.javaparser.ast.{ImportDeclaration, PackageDeclaration}
 import com.github.javaparser.ast.body._
 
 package object declaration {
@@ -16,6 +16,7 @@ package object declaration {
   type Import = ImportDeclaration
   type Initializer = InitializerDeclaration
   type Method = MethodDeclaration
+  type Package = PackageDeclaration
   type Parameter = com.github.javaparser.ast.body.Parameter
   type ReceiverParameter = com.github.javaparser.ast.body.ReceiverParameter
   type TypeBody = TypeDeclaration[_ <: TypeDeclaration[_]]
