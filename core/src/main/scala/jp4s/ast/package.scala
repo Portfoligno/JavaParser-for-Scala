@@ -7,6 +7,7 @@ import nejc4s.base._
 import scala.annotation.tailrec
 
 package object ast {
+  type CompilationUnit = com.github.javaparser.ast.CompilationUnit
   type Modifier = com.github.javaparser.ast.Modifier
   type Node = com.github.javaparser.ast.Node
 
