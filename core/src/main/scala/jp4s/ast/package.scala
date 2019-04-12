@@ -2,14 +2,19 @@ package jp4s
 
 import com.github.javaparser.ast.NodeList
 import nejc4s.alias.Nejl
-import nejc4s.base.{Absent, JavaCollection, JavaList, Optional, Present}
+import nejc4s.base._
 
 import scala.annotation.tailrec
 
 package object ast {
   type Modifier = com.github.javaparser.ast.Modifier
-  type NameNode = com.github.javaparser.ast.expr.Name
   type Node = com.github.javaparser.ast.Node
+
+
+  private[ast]
+  type NameNode = com.github.javaparser.ast.expr.Name
+
+  private[ast]
   type SimpleNameNode = com.github.javaparser.ast.expr.SimpleName
 
 
