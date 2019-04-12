@@ -7,6 +7,6 @@ package object `type` {
   type PrimitiveType = com.github.javaparser.ast.`type`.PrimitiveType
   type ReferenceType = com.github.javaparser.ast.`type`.ReferenceType
   type Type = com.github.javaparser.ast.`type`.Type
-
   type TypeParameter = com.github.javaparser.ast.`type`.TypeParameter
+  type UnionType = com.github.javaparser.ast.`type`.UnionType
 }
