@@ -12,4 +12,5 @@ package object `type` {
   type UnknownType = com.github.javaparser.ast.`type`.UnknownType
   type VarType = com.github.javaparser.ast.`type`.VarType
   type VoidType = com.github.javaparser.ast.`type`.VoidType
+  type WildcardType = com.github.javaparser.ast.`type`.WildcardType
 }
