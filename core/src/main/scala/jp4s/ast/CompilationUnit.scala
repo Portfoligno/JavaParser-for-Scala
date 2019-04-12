@@ -1,7 +1,7 @@
 package jp4s.ast
 
-import com.github.javaparser.ast.modules.ModuleDeclaration
 import jp4s.ast.declaration.{Import, Package, TypeBody}
+import jp4s.ast.module.Module
 import nejc4s.base.{JavaList, Optional}
 
 object CompilationUnit {
@@ -11,7 +11,7 @@ object CompilationUnit {
     packageDeclaration: Optional[Package],
     imports: JavaList[Import],
     types: JavaList[TypeBody],
-    module: Optional[ModuleDeclaration]
+    module: Optional[Module]
   ): CompilationUnit =
     new CompilationUnit(
       packageDeclaration.orElseNull,
@@ -24,7 +24,7 @@ object CompilationUnit {
     Optional[Package],
     JavaList[Import],
     JavaList[TypeBody],
-    Optional[ModuleDeclaration]
+    Optional[Module]
   )] =
     Some((
       u.getPackageDeclaration,
