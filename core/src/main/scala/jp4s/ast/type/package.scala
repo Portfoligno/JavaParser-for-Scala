@@ -5,7 +5,6 @@ package object `type` {
   type ClassOrInterfaceType = com.github.javaparser.ast.`type`.ClassOrInterfaceType
   type IntersectionType = com.github.javaparser.ast.`type`.IntersectionType
   type PrimitiveType = com.github.javaparser.ast.`type`.PrimitiveType
-
   type ReferenceType = com.github.javaparser.ast.`type`.ReferenceType
 
   type Type = com.github.javaparser.ast.`type`.Type
