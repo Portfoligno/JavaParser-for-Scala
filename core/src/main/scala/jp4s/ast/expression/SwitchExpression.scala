@@ -18,8 +18,5 @@ object SwitchExpression {
     Expression,
     JavaList[Case]
   )] =
-    Some((
-      s.getSelector,
-      s.getEntries
-    ))
+    Switch.unapply(s)
 }

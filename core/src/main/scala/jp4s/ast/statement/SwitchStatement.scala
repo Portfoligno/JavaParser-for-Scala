@@ -1,7 +1,7 @@
 package jp4s.ast
 package statement
 
-import jp4s.ast.expression.Expression
+import jp4s.ast.expression.{Expression, Switch}
 import nejc4s.base.JavaList
 
 object SwitchStatement {
@@ -18,8 +18,5 @@ object SwitchStatement {
     Expression,
     JavaList[Case]
   )] =
-    Some((
-      s.getSelector,
-      s.getEntries
-    ))
+    Switch.unapply(s)
 }
