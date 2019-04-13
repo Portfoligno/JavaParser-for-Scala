@@ -31,7 +31,7 @@ object Binary {
     Some((b.getLeft, b.getRight))
 
 
-  sealed class Factory(val operator: Operator) {
+  sealed abstract class Factory(val operator: Operator) {
     def apply(left: Expression, right: Expression): Binary =
       new Binary(left, right, operator)
 

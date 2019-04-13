@@ -23,7 +23,7 @@ object PrimitiveType {
     Some(t.getAnnotations)
 
 
-  sealed class Factory(val `type`: Type) {
+  sealed abstract class Factory(val `type`: Type) {
     def apply(annotations: JavaList[Annotation]): PrimitiveType =
       new PrimitiveType(`type`, nodeList(annotations))
 

@@ -25,7 +25,7 @@ object Modifier {
     true
 
 
-  sealed class Factory(val keyword: Keyword) {
+  sealed abstract class Factory(val keyword: Keyword) {
     def apply(): Modifier =
       new Modifier(keyword)
 
