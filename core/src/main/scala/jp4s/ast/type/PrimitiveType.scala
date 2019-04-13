@@ -24,7 +24,7 @@ object PrimitiveType {
 
 
   sealed class Factory(val `type`: Type) {
-    def apply(`type`: Type, annotations: JavaList[Annotation]): PrimitiveType =
+    def apply(annotations: JavaList[Annotation]): PrimitiveType =
       new PrimitiveType(`type`, nodeList(annotations))
 
     def unapply(t: PrimitiveType): Option[JavaList[Annotation]] =
