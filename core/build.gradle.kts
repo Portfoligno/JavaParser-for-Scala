@@ -20,6 +20,7 @@ dependencies {
 tasks.withType<ScalaCompile> {
   scalaCompileOptions.additionalParameters = listOf(
           "-Xplugin:" + scalaCompilerPlugin.asPath,
+          "-Xfatal-warnings",
           "-Ypartial-unification",
           "-language:higherKinds",
           "-language:implicitConversions")
