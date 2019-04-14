@@ -62,12 +62,14 @@ object Variable {
 
 
 
+  import jp4s.syntax.optional._
+
   import scala.collection.JavaConverters._
   import scala.collection.convert.ImplicitConversionsToScala._
 
   private[ast]
   def `type`(variables: NodeList[VariableDeclarator]): Type =
-    variables.iterator.next().getType
+    NestedArrayType.unapply(variables.iterator.next().getType).get._1
 
   private[ast]
   def nejl(variables: NodeList[VariableDeclarator]): Nejl[Variable] =
@@ -87,8 +89,6 @@ object Variable {
         source
 
       case _ =>
-        import jp4s.syntax.optional._
-
         new NodeList(
           variables
             .view
