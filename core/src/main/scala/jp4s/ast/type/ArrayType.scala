@@ -20,7 +20,7 @@ object ArrayType {
     ))
 
 
-  sealed class Variance(origin: Origin) {
+  sealed abstract class Variance(origin: Origin) {
     def apply(
       componentType: Type,
       annotations: JavaList[Annotation]
