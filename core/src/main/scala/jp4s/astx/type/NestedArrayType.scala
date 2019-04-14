@@ -12,7 +12,7 @@ object NestedArrayType {
   def apply(
     `type`: Type, dimensions: JavaList[JavaList[Annotation]]
   )(
-    implicit factory: ArrayType.BracketPlace
+    implicit factory: ArrayType.Variance
   ): Type = {
     @tailrec
     def wrap(
@@ -31,7 +31,7 @@ object NestedArrayType {
   }
 
   def unapply(`type`: Type)(
-    implicit factory: ArrayType.BracketPlace
+    implicit factory: ArrayType.Variance
   ): Some[(Type, JavaList[JavaList[Annotation]])] = {
     @tailrec
     def unwrap(

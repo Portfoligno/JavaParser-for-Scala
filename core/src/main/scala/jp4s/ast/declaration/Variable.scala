@@ -3,7 +3,6 @@ package declaration
 
 import com.github.javaparser.ast.NodeList
 import com.github.javaparser.ast.body.VariableDeclarator
-import jp4s.ast.`type`.ArrayType.BracketPlace
 import jp4s.ast.`type`.{ArrayType, Type}
 import jp4s.ast.expression.{Annotation, Expression}
 import jp4s.astx.`type`.NestedArrayType
@@ -36,7 +35,7 @@ object Variable {
 
 
   private
-  implicit def bracketPlace: BracketPlace =
+  implicit def arrayTypeVariance: ArrayType.Variance =
     ArrayType.OnName
 
   private

@@ -7,8 +7,8 @@ import jp4s.ast.expression.Annotation
 import nejc4s.base.JavaList
 
 object ArrayType {
-  object OnType extends BracketPlace(TYPE)
-  object OnName extends BracketPlace(NAME)
+  object OnType extends Variance(TYPE)
+  object OnName extends Variance(NAME)
 
   def unapply(t: ArrayType): Some[(
     Type,
@@ -20,7 +20,7 @@ object ArrayType {
     ))
 
 
-  sealed class BracketPlace(origin: Origin) {
+  sealed class Variance(origin: Origin) {
     def apply(
       componentType: Type,
       annotations: JavaList[Annotation]
