@@ -3,12 +3,12 @@ package declaration
 
 import com.github.javaparser.ast.NodeList
 import com.github.javaparser.ast.body.VariableDeclarator
+import jp4s.ast.`type`.ArrayType.BracketPlace
 import jp4s.ast.`type`.{ArrayType, Type}
 import jp4s.ast.expression.{Annotation, Expression}
+import jp4s.ast.extra.NestedArrayType
 import nejc4s.alias.Nejl
 import nejc4s.base.{JavaCollection, JavaList, Optional}
-
-import scala.annotation.tailrec
 
 sealed trait Variable {
   def arrayDimensions: JavaList[JavaList[Annotation]]
@@ -36,6 +36,10 @@ object Variable {
 
 
   private
+  implicit def bracketPlace: BracketPlace =
+    ArrayType.OnName
+
+  private
   case class Pure(
     arrayDimensions: JavaList[JavaList[Annotation]],
     name: Identifier,
@@ -46,7 +50,7 @@ object Variable {
   case class ByNode(v: VariableDeclarator) extends Variable {
     override
     def arrayDimensions: JavaList[JavaList[Annotation]] =
-      NestingOnName.unapply(v.getType).get._1
+      NestedArrayType.unapply(v.getType).get._2
 
     override
     def name: Identifier =
@@ -68,16 +72,16 @@ object Variable {
 
   private[ast]
   def nejl(variables: NodeList[VariableDeclarator]): Nejl[Variable] =
-    VariableNejlProxy(variables)
+    VariableNejlWrapper(variables)
 
   private[ast]
   def nodeList(`type`: Type, variables: Nejl[Variable]): NodeList[VariableDeclarator] =
     variables match {
-      case VariableNejlProxy(source) if source
+      case VariableNejlWrapper(source) if source
         .view
         .map(_.getType)
         .forall {
-          case NestingOnName(_, `type`) => true
+          case NestedArrayType(`type`, _) => true
           case _ => false
         }
       =>
@@ -91,7 +95,7 @@ object Variable {
             .view
             .map(v =>
               new VariableDeclarator(
-                NestingOnName(v.arrayDimensions, `type`),
+                NestedArrayType(`type`, v.arrayDimensions),
                 simpleNameNode(v.name),
                 v.initializer.orElseNull
               )
@@ -102,46 +106,12 @@ object Variable {
 
 
   private
-  case class VariableNejlProxy(source: NodeList[VariableDeclarator])
+  case class VariableNejlWrapper(source: NodeList[VariableDeclarator])
     extends Nejl.UnsafeProxy[Variable]
       with JavaList[Variable]
       with JavaCollection[Variable] {
     protected
     override def delegate: JavaList[Variable] =
       (source.view.map(ByNode): Seq[Variable]).asJava
-  }
-
-
-  private
-  object NestingOnName {
-    @tailrec
-    def apply(dimensions: Seq[JavaList[Annotation]], baseType: Type): Type =
-      dimensions match {
-        case Seq(annotations, remainingDimensions @ _*) =>
-          NestingOnName(remainingDimensions, ArrayType(
-            baseType,
-            ArrayType.Origin.Name,
-            annotations)
-          )
-
-        case _ =>
-          baseType
-      }
-
-    def unapply(nestedType: Type): Some[(JavaList[JavaList[Annotation]], Type)] = {
-      @tailrec
-      def unwrap(
-        dimensions: List[JavaList[Annotation]], currentType: Type
-      ): (JavaList[JavaList[Annotation]], Type) =
-        currentType match {
-          case ArrayType(componentType, ArrayType.Origin.Name, annotations) =>
-            unwrap(annotations :: dimensions, componentType)
-
-          case _ =>
-            dimensions.asJava -> currentType
-        }
-
-      Some(unwrap(Nil, nestedType))
-    }
   }
 }

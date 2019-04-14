@@ -95,7 +95,7 @@ package object ast {
 
   private[ast]
   def nejl[A <: Node](nodeList: NodeList[A]): Nejl[A] =
-    NodeNejlProxy(nodeList)
+    NodeNejlWrapper(nodeList)
 
   private[ast]
   def nodeList[A <: Node](javaList: JavaList[A]): NodeList[A] =
@@ -103,7 +103,7 @@ package object ast {
       case nodeList: NodeList[A] =>
         nodeList
 
-      case NodeNejlProxy(nodeList) =>
+      case NodeNejlWrapper(nodeList) =>
         nodeList
 
       case _ =>
@@ -112,12 +112,12 @@ package object ast {
 
   private[ast]
   def nameNodesAsIdentifiers(nameNodes: NodeList[NameNode]): JavaList[Nejl[Identifier]] =
-    NameNodeNejlProxy(nameNodes)
+    NameNodeNejlWrapper(nameNodes)
 
   private[ast]
   def identifiersAsNameNodes(identifiers: JavaList[Nejl[Identifier]]): NodeList[NameNode] =
     identifiers match {
-      case NameNodeNejlProxy(nodeList) =>
+      case NameNodeNejlWrapper(nodeList) =>
         nodeList
 
       case _ =>
@@ -149,7 +149,7 @@ package object ast {
 
 
   private
-  case class NodeNejlProxy[A <: Node](
+  case class NodeNejlWrapper[A <: Node](
     override protected val delegate: NodeList[A]
   )
     extends Nejl.UnsafeProxy[A]
@@ -157,7 +157,7 @@ package object ast {
       with JavaCollection[A]
 
   private
-  case class NameNodeNejlProxy(
+  case class NameNodeNejlWrapper(
     source: NodeList[NameNode]
   )
     extends Nejl.UnsafeProxy[Nejl[Identifier]]
