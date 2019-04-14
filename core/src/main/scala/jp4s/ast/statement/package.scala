@@ -11,7 +11,7 @@ package object statement {
   type Continue = ContinueStmt
   type DeclareLocal = LocalClassDeclarationStmt
   type Do = DoStmt
-  type Execution = ExpressionStmt
+  type Execute = ExpressionStmt
   type For = ForStmt
   type ForEach = ForEachStmt
   type If = IfStmt

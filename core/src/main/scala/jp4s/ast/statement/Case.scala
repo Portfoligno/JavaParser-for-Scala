@@ -26,7 +26,7 @@ object Case {
         new Case(
           nodeList(labels),
           statement match {
-            case _: Execution => EXPRESSION
+            case _: Execute => EXPRESSION
             case _: Block => BLOCK
             case _: Throw => THROWS_STATEMENT
             case r @ _ =>
@@ -45,7 +45,7 @@ object Case {
       (
         a.getType match {
           case STATEMENT_GROUP => Left(a.getStatements)
-          case EXPRESSION => Right((s: Statement) => s.asInstanceOf[Execution])
+          case EXPRESSION => Right((s: Statement) => s.asInstanceOf[Execute])
           case BLOCK => Right((s: Statement) => s.asInstanceOf[Block])
           case THROWS_STATEMENT => Right((s: Statement) => s.asInstanceOf[Throw])
         }
