@@ -4,6 +4,19 @@ import com.github.javaparser.utils.StringEscapeUtils
 import jp4s.ast.expression._
 
 object PrimitiveLiteral {
+  def unapply(l: Literal): Some[AnyVal] =
+    Some(l match {
+      case Boolean(x) => x
+      case Char(x) => x
+      case Int(x) => x
+      case Long(x) => x
+      case Float(x) => x
+      case Double(x) => x
+      case r @ _ =>
+        throw new IllegalArgumentException(String.valueOf(r))
+    })
+
+
   case object Boolean extends Type[Boolean, BooleanLiteral] {
     case object True extends Value(true)
     case object False extends Value(false)
@@ -94,9 +107,9 @@ object PrimitiveLiteral {
   }
 
 
-  sealed trait Type[Value, Literal] {
-    def apply(value: Value): Literal
+  sealed trait Type[V <: AnyVal, L <: Literal] {
+    def apply(value: V): L
 
-    def unapply(l: Literal): Option[Value]
+    def unapply(l: L): Option[V]
   }
 }
