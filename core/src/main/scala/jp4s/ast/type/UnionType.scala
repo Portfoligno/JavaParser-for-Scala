@@ -1,16 +1,14 @@
 package jp4s.ast
 package `type`
 
-import nejc4s.alias.Nejl
-
 object UnionType {
   def apply(
-    elements: Nejl[ReferenceType]
+    element: ReferenceType, otherElements: ReferenceType*
   ): UnionType =
     new UnionType(
-      nodeList(elements)
+      cons(element, otherElements)
     )
 
-  def unapply(t: UnionType): Some[Nejl[ReferenceType]] =
-    Some(nejl(t.getElements))
+  def unapplySeq(t: UnionType): Some[(ReferenceType, Seq[ReferenceType])] =
+    Some(uncons(t.getElements))
 }
