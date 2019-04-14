@@ -6,25 +6,57 @@ import com.github.javaparser.ast.`type`.PrimitiveType.Primitive._
 import jp4s.ast.expression.Annotation
 import nejc4s.base.JavaList
 
+import scala.collection.mutable
+
 object PrimitiveType {
-  type Type = Primitive
+  type VarianceEnum = Primitive
 
-  object Boolean extends Factory(BOOLEAN)
-  object Char extends Factory(CHAR)
-  object Byte extends Factory(BYTE)
-  object Short extends Factory(SHORT)
-  object Int extends Factory(INT)
-  object Long extends Factory(LONG)
-  object Float extends Factory(FLOAT)
-  object Double extends Factory(DOUBLE)
+  case object Boolean extends Variance(BOOLEAN)
+  case object Char extends Variance(CHAR)
+  case object Byte extends Variance(BYTE)
+  case object Short extends Variance(SHORT)
+  case object Int extends Variance(INT)
+  case object Long extends Variance(LONG)
+  case object Float extends Variance(FLOAT)
+  case object Double extends Variance(DOUBLE)
 
 
-  sealed abstract class Factory(val `type`: Type) {
+  def apply(variance: Variance, annotations: JavaList[Annotation]): PrimitiveType =
+    variance(annotations)
+
+  def unapply(t: PrimitiveType): Some[(PrimitiveType.Variance, JavaList[Annotation])] =
+    Some((Variance(t.getType), t.getAnnotations))
+
+
+  private
+  val lookup = mutable.Map[VarianceEnum, Variance]()
+
+  object Variance {
+    // Ensure all cases are initialized
+    Boolean
+    Char
+    Byte
+    Short
+    Int
+    Long
+    Float
+    Double
+
+    def apply(enum: VarianceEnum): Variance =
+      lookup(enum)
+
+    def unapply(v: Variance): Some[VarianceEnum] =
+      Some(v.enum)
+  }
+
+  sealed abstract class Variance(private val enum: VarianceEnum) {
+    lookup += enum -> this
+
     def apply(annotations: JavaList[Annotation]): PrimitiveType =
-      new PrimitiveType(`type`, nodeList(annotations))
+      new PrimitiveType(enum, nodeList(annotations))
 
     def unapply(t: PrimitiveType): Option[JavaList[Annotation]] =
-      if (t.getType == `type`) {
+      if (t.getType == enum) {
         Some(t.getAnnotations)
       } else {
         None
