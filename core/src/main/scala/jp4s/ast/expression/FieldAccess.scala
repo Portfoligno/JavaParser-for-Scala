@@ -1,31 +1,30 @@
 package jp4s.ast
 package expression
 
-import jp4s.ast.`type`.Type
-import nejc4s.base.{JavaList, Optional}
+import nejc4s.base.Absent
 
 object FieldAccess {
   import jp4s.syntax.optional._
 
   def apply(
     scope: Expression,
-    typeArguments: Optional[JavaList[Type]],
     name: Identifier
   ): FieldAccess =
     new FieldAccess(
       scope,
-      typeArguments.transform(nodeList).orElseNull,
+      Absent[Null]().orElseNull,
       simpleNameNode(name)
     )
 
   def unapply(a: FieldAccess): Some[(
     Expression,
-    Optional[JavaList[Type]],
     Identifier
-  )] =
+  )] = {
+    require(!a.getTypeArguments.isPresent)
+
     Some((
       a.getScope,
-      a.getTypeArguments.covary,
       identifier(a.getName)
     ))
+  }
 }
