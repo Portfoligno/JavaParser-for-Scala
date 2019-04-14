@@ -1,19 +1,30 @@
 package jp4s.ast.expression
 
 object BooleanLiteral {
-  object True {
-    def apply(): BooleanLiteral =
-      new BooleanLiteral(true)
+  case object True extends Variance(true)
+  case object False extends Variance(false)
 
-    def unapply(l: BooleanLiteral): Boolean =
-      l.getValue
+
+  def apply(variance: Variance): BooleanLiteral =
+    variance()
+
+  def unapply(l: BooleanLiteral): Some[Variance] =
+    Some(Variance(l.getValue))
+
+
+  object Variance {
+    def apply(value: Boolean): Variance =
+      if (value) True else False
+
+    def unapply(v: Variance): Some[Boolean] =
+      Some(v.value)
   }
 
-  object False {
+  sealed abstract class Variance(private val value: Boolean) {
     def apply(): BooleanLiteral =
-      new BooleanLiteral(false)
+      new BooleanLiteral(value)
 
     def unapply(l: BooleanLiteral): Boolean =
-      !l.getValue
+      !l.getValue ^ value
   }
 }
