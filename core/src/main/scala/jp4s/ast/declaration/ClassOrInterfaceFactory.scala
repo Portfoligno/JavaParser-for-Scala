@@ -15,15 +15,14 @@ trait ClassOrInterfaceFactory {
     JavaList[Annotation],
     Identifier,
     JavaList[TypeParameter],
-    JavaList[ClassOrInterfaceType],
-    JavaList[ClassOrInterfaceType],
+    (JavaList[ClassOrInterfaceType], JavaList[ClassOrInterfaceType]),
     JavaList[Body]
   )] =
     Some(c match {
-      case Class(modifiers, annotations, name, typeParameters, extendedType, implementedTypes, members) =>
-        (Class, modifiers, annotations, name, typeParameters, extendedType.toJavaList, implementedTypes, members)
+      case Class(modifiers, annotations, name, typeParameters, (extended, implemented), members) =>
+        (Class, modifiers, annotations, name, typeParameters, (extended.toJavaList, implemented), members)
 
-      case Interface(modifiers, annotations, name, typeParameters, extendedType, members) =>
-        (Interface, modifiers, annotations, name, typeParameters, extendedType, JavaList(), members)
+      case Interface(modifiers, annotations, name, typeParameters, extended, members) =>
+        (Interface, modifiers, annotations, name, typeParameters, (extended, JavaList()), members)
     })
 }

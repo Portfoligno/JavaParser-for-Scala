@@ -13,8 +13,7 @@ trait ClassFactory {
     annotations: JavaList[Annotation],
     name: Identifier,
     typeParameters: JavaList[TypeParameter],
-    extendedType: Optional[ClassOrInterfaceType],
-    implementedTypes: JavaList[ClassOrInterfaceType],
+    superTypes: (Optional[ClassOrInterfaceType], JavaList[ClassOrInterfaceType]),
     members: JavaList[Body]
   ): Class =
     Class.unsafeFromClassOrInterface(new ClassOrInterface(
@@ -23,11 +22,11 @@ trait ClassFactory {
       false,
       simpleNameNode(name),
       nodeList(typeParameters),
-      extendedType match {
+      superTypes._1 match {
         case Present(t) => new NodeList(t)
         case _ => new NodeList()
       },
-      nodeList(implementedTypes),
+      nodeList(superTypes._2),
       nodeList(members)
     ))
 
@@ -36,8 +35,7 @@ trait ClassFactory {
     JavaList[Annotation],
     Identifier,
     JavaList[TypeParameter],
-    Optional[ClassOrInterfaceType],
-    JavaList[ClassOrInterfaceType],
+    (Optional[ClassOrInterfaceType], JavaList[ClassOrInterfaceType]),
     JavaList[Body]
   )] =
     if (c.isInterface) {
@@ -48,12 +46,14 @@ trait ClassFactory {
         c.getAnnotations,
         identifier(c.getName),
         c.getTypeParameters,
-        c.getExtendedTypes match {
-          case JavaList() => Absent()
-          case JavaList(t) => Present(t)
-          case r @ _ => throw new IllegalArgumentException(String.valueOf(r))
-        },
-        c.getImplementedTypes,
+        (
+          c.getExtendedTypes match {
+            case JavaList() => Absent()
+            case JavaList(t) => Present(t)
+            case r @ _ => throw new IllegalArgumentException(String.valueOf(r))
+          },
+          c.getImplementedTypes
+        ),
         c.getMembers
       ))
     }
