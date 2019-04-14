@@ -110,6 +110,22 @@ package object ast {
         new NodeList(javaList)
     }
 
+
+  private[ast]
+  def uncons[A <: Node](nodeList: NodeList[A]): (A, Seq[A]) =
+    (nodeList.iterator.next(), NodeTailJavaListWrapper(nodeList))
+
+  private[ast]
+  def cons[A <: Node](head: A, tail: Seq[A]): NodeList[A] =
+    tail.asJava match {
+      case NodeTailJavaListWrapper(source @ Nejl(`head`, _ @ _*)) =>
+        source
+
+      case _ =>
+        new NodeList((head +: tail.view).asJava)
+    }
+
+
   private[ast]
   def nameNodesAsIdentifiers(nameNodes: NodeList[NameNode]): JavaList[Nejl[Identifier]] =
     NameNodeNejlWrapper(nameNodes)
@@ -155,6 +171,18 @@ package object ast {
     extends Nejl.UnsafeProxy[A]
       with JavaList[A]
       with JavaCollection[A]
+
+  private
+  case class NodeTailJavaListWrapper[A <: Node](
+    source: NodeList[A]
+  )
+    extends JavaList.UnsafeProxy[A]
+      with JavaList[A]
+      with JavaCollection[A] {
+    protected
+    override def delegate: JavaList[A] =
+      source.view.drop(1).asJava
+  }
 
   private
   case class NameNodeNejlWrapper(

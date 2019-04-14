@@ -6,6 +6,7 @@ import jp4s.ast.expression.Expression
 import nejc4s.base.{JavaList, Optional}
 
 case object ThisInvocation extends SpecialConstructorInvocation.Variance(true)
+
 case object SuperInvocation extends SpecialConstructorInvocation.Variance(false)
 
 object SpecialConstructorInvocation {

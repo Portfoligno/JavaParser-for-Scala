@@ -1,16 +1,14 @@
 package jp4s.ast
 package `type`
 
-import nejc4s.alias.Nejl
-
 object IntersectionType {
   def apply(
-    elements: Nejl[ReferenceType]
+    element: ReferenceType, otherElements: ReferenceType*
   ): IntersectionType =
     new IntersectionType(
-      nodeList(elements)
+      cons(element, otherElements)
     )
 
-  def unapply(t: IntersectionType): Some[Nejl[ReferenceType]] =
-    Some(nejl(t.getElements))
+  def unapplySeq(t: IntersectionType): Some[(ReferenceType, Seq[ReferenceType])] =
+    Some(uncons(t.getElements))
 }
