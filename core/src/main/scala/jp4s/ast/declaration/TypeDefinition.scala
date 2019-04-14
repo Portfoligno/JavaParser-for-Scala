@@ -4,8 +4,8 @@ package declaration
 import jp4s.ast.expression.Annotation
 import nejc4s.base.JavaList
 
-object TypeBody {
-  def unapply(c: TypeBody): Some[(
+object TypeDefinition {
+  def unapply(c: TypeDefinition): Some[(
     JavaList[Modifier],
     JavaList[Annotation],
     Identifier,

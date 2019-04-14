@@ -1,6 +1,6 @@
 package jp4s.ast
 
-import jp4s.ast.declaration.{Import, Package, TypeBody}
+import jp4s.ast.declaration.{Import, Package, TypeDefinition}
 import jp4s.ast.module.Module
 import nejc4s.base.{JavaList, Optional}
 
@@ -10,7 +10,7 @@ object CompilationUnit {
   def apply(
     packageDeclaration: Optional[Package],
     imports: JavaList[Import],
-    types: JavaList[TypeBody],
+    types: JavaList[TypeDefinition],
     module: Optional[Module]
   ): CompilationUnit =
     new CompilationUnit(
@@ -23,7 +23,7 @@ object CompilationUnit {
   def unapply(u: CompilationUnit): Some[(
     Optional[Package],
     JavaList[Import],
-    JavaList[TypeBody],
+    JavaList[TypeDefinition],
     Optional[Module]
   )] =
     Some((

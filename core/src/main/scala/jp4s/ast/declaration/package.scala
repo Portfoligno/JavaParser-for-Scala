@@ -19,7 +19,7 @@ package object declaration {
   type Package = PackageDeclaration
   type Parameter = com.github.javaparser.ast.body.Parameter
   type ReceiverParameter = com.github.javaparser.ast.body.ReceiverParameter
-  type TypeBody = TypeDeclaration[_ <: TypeDeclaration[_]]
+  type TypeDefinition = TypeDeclaration[_ <: TypeDeclaration[_]]
 
 
   object Package extends PackageFactory
