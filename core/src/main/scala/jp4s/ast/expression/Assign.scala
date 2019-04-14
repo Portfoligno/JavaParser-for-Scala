@@ -20,17 +20,13 @@ object Assign {
   object UnsignedRightShift extends Factory(UNSIGNED_RIGHT_SHIFT)
 
 
-  def unapply(a: Assign): Some[(Expression, Expression)] =
-    Some((a.getTarget, a.getValue))
-
-
   sealed abstract class Factory(val operator: Operator) {
     def apply(target: Expression, value: Expression): Assign =
       new Assign(target, value, operator)
 
     def unapply(a: Assign): Option[(Expression, Expression)] =
       if (a.getOperator == operator) {
-        Assign.unapply(a)
+        Some((a.getTarget, a.getValue))
       } else {
         None
       }

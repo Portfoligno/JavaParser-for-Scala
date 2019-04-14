@@ -1,10 +1,6 @@
 package jp4s.ast.expression
 
 object BooleanLiteral {
-  def unapply(l: BooleanLiteral): Boolean =
-    true
-
-
   object True {
     def apply(): BooleanLiteral =
       new BooleanLiteral(true)

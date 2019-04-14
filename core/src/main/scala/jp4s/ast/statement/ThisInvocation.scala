@@ -26,7 +26,11 @@ object ThisInvocation {
     JavaList[Expression]
   )] =
     if (i.isThis) {
-      SpecialConstructorInvocation.unapply(i)
+      Some((
+        i.getTypeArguments.covary,
+        i.getExpression,
+        i.getArguments
+      ))
     } else {
       None
     }

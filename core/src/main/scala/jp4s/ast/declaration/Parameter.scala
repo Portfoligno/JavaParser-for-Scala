@@ -6,23 +6,6 @@ import jp4s.ast.expression.Annotation
 import nejc4s.base.JavaList
 
 object Parameter {
-  def unapply(p: Parameter): Some[(
-    JavaList[Modifier],
-    JavaList[Annotation],
-    Type,
-    JavaList[Annotation],
-    Identifier
-  )] =
-    Some((
-      p.getModifiers,
-      p.getAnnotations,
-      p.getType,
-      p.getVarArgsAnnotations,
-      identifier(p.getName)
-    ))
-
-
-
   object Plain {
     def apply(
       modifiers: JavaList[Modifier],
@@ -48,7 +31,13 @@ object Parameter {
       Identifier
     )] =
       if (!p.isVarArgs) {
-        Parameter.unapply(p)
+        Some((
+          p.getModifiers,
+          p.getAnnotations,
+          p.getType,
+          p.getVarArgsAnnotations,
+          identifier(p.getName)
+        ))
       } else {
         None
       }
@@ -80,7 +69,13 @@ object Parameter {
       Identifier
     )] =
       if (p.isVarArgs) {
-        Parameter.unapply(p)
+        Some((
+          p.getModifiers,
+          p.getAnnotations,
+          p.getType,
+          p.getVarArgsAnnotations,
+          identifier(p.getName)
+        ))
       } else {
         None
       }

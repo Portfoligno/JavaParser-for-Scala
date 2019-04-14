@@ -5,5 +5,5 @@ object FloatingPointLiteral {
     new FloatingPointLiteral(value)
 
   def unapply(l: FloatingPointLiteral): Some[String] =
-    LiteralByString.unapply(l)
+    Some(l.getValue)
 }

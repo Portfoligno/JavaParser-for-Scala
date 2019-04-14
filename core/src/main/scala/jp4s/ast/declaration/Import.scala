@@ -4,16 +4,6 @@ package declaration
 import nejc4s.alias.Nejl
 
 object Import {
-  def unapply(i: Import): Some[(
-    Nejl[Identifier],
-    Boolean
-  )] =
-    Some((
-      identifiers(i.getName),
-      i.isAsterisk
-    ))
-
-
   object Plain {
     def apply(
       name: Nejl[Identifier],

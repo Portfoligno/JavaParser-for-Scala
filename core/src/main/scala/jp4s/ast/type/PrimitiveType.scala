@@ -19,17 +19,13 @@ object PrimitiveType {
   object Double extends Factory(DOUBLE)
 
 
-  def unapply(t: PrimitiveType): Some[JavaList[Annotation]] =
-    Some(t.getAnnotations)
-
-
   sealed abstract class Factory(val `type`: Type) {
     def apply(annotations: JavaList[Annotation]): PrimitiveType =
       new PrimitiveType(`type`, nodeList(annotations))
 
     def unapply(t: PrimitiveType): Option[JavaList[Annotation]] =
       if (t.getType == `type`) {
-        PrimitiveType.unapply(t)
+        Some(t.getAnnotations)
       } else {
         None
       }

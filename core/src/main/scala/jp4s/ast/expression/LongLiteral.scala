@@ -5,5 +5,5 @@ object LongLiteral {
     new LongLiteral(value)
 
   def unapply(l: LongLiteral): Some[String] =
-    LiteralByString.unapply(l)
+    Some(l.getValue)
 }

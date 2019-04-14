@@ -10,15 +10,6 @@ object ArrayType {
   object OnType extends Variance(TYPE)
   object OnName extends Variance(NAME)
 
-  def unapply(t: ArrayType): Some[(
-    Type,
-    JavaList[Annotation]
-  )] =
-    Some((
-      t.getComponentType,
-      t.getAnnotations
-    ))
-
 
   sealed abstract class Variance(origin: Origin) {
     def apply(
@@ -36,7 +27,10 @@ object ArrayType {
       JavaList[Annotation]
     )] =
       if (t.getOrigin == origin) {
-        ArrayType.unapply(t)
+        Some((
+          t.getComponentType,
+          t.getAnnotations
+        ))
       } else {
         None
       }

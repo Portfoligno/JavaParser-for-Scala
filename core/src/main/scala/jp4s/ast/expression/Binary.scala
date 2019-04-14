@@ -27,17 +27,13 @@ object Binary {
   object Remainder extends Factory(REMAINDER)
 
 
-  def unapply(b: Binary): Some[(Expression, Expression)] =
-    Some((b.getLeft, b.getRight))
-
-
   sealed abstract class Factory(val operator: Operator) {
     def apply(left: Expression, right: Expression): Binary =
       new Binary(left, right, operator)
 
-    def unapply(a: Binary): Option[(Expression, Expression)] =
-      if (a.getOperator == operator) {
-        Binary.unapply(a)
+    def unapply(b: Binary): Option[(Expression, Expression)] =
+      if (b.getOperator == operator) {
+        Some((b.getLeft, b.getRight))
       } else {
         None
       }

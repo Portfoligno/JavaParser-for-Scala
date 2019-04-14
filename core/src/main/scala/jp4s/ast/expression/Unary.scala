@@ -16,17 +16,13 @@ object Unary {
   object PostfixDecrement extends Factory(POSTFIX_DECREMENT)
 
 
-  def unapply(u: Unary): Some[Expression] =
-    Some(u.getExpression)
-
-
   sealed abstract class Factory(val operator: Operator) {
     def apply(expression: Expression): Unary =
       new Unary(expression, operator)
 
-    def unapply(a: Unary): Option[Expression] =
-      if (a.getOperator == operator) {
-        Unary.unapply(a)
+    def unapply(u: Unary): Option[Expression] =
+      if (u.getOperator == operator) {
+        Some(u.getExpression)
       } else {
         None
       }

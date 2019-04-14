@@ -6,18 +6,6 @@ import nejc4s.alias.Nejl
 import nejc4s.base.JavaList
 
 object Module {
-  def unapply(m: Module): Some[(
-    JavaList[Annotation],
-    Nejl[Identifier],
-    JavaList[ModuleDirective]
-  )] =
-    Some((
-      m.getAnnotations,
-      identifiers(m.getName),
-      m.getDirectives
-    ))
-
-
   object Plain {
     def apply(
       annotations: JavaList[Annotation],
@@ -37,7 +25,11 @@ object Module {
       JavaList[ModuleDirective]
     )] =
       if (!m.isOpen) {
-        Module.unapply(m)
+        Some((
+          m.getAnnotations,
+          identifiers(m.getName),
+          m.getDirectives
+        ))
       } else {
         None
       }
@@ -62,7 +54,11 @@ object Module {
       JavaList[ModuleDirective]
     )] =
       if (m.isOpen) {
-        Module.unapply(m)
+        Some((
+          m.getAnnotations,
+          identifiers(m.getName),
+          m.getDirectives
+        ))
       } else {
         None
       }

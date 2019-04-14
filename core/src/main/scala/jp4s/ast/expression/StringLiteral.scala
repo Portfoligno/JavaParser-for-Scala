@@ -5,5 +5,5 @@ object StringLiteral {
     new StringLiteral(value)
 
   def unapply(l: StringLiteral): Some[String] =
-    LiteralByString.unapply(l)
+    Some(l.getValue)
 }
