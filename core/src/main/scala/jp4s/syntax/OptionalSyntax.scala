@@ -1,6 +1,8 @@
 package jp4s.syntax
 
-import nejc4s.base.Optional
+import java.util.Collections
+
+import nejc4s.base.{JavaList, Optional, Present}
 
 private[jp4s]
 trait OptionalSyntax {
@@ -18,4 +20,10 @@ class OptionalOps[A](private val optional: Optional[A]) extends AnyVal {
 
   def orElseNull(implicit ev: Null <:< A): A =
     optional.orElse(ev(null))
+
+  def toJavaList: JavaList[A] =
+    optional match {
+      case Present(a) => Collections.singletonList(a)
+      case _ => Collections.emptyList()
+    }
 }

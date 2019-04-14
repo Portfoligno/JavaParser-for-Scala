@@ -25,9 +25,14 @@ package object declaration {
   object Package extends PackageFactory
 
 
+  object ClassOrInterface {
+    sealed trait Variance
+  }
+
+
   type Class <: ClassOrInterfaceDeclaration with Class.Tag
 
-  object Class extends ClassFactory {
+  case object Class extends ClassFactory with ClassOrInterface.Variance {
     private[ast] trait Tag extends Any
 
     def fromClassOrInterface(c: ClassOrInterface): Option[Class] =
@@ -48,7 +53,7 @@ package object declaration {
 
   type Interface <: ClassOrInterfaceDeclaration with Interface.Tag
 
-  object Interface extends InterfaceFactory {
+  case object Interface extends InterfaceFactory with ClassOrInterface.Variance {
     private[ast] trait Tag extends Any
 
     def fromClassOrInterface(c: ClassOrInterface): Option[Interface] =
