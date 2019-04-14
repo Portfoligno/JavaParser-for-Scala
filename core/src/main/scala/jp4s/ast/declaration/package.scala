@@ -27,6 +27,17 @@ package object declaration {
 
   object ClassOrInterface {
     sealed trait Variance
+
+    object Variance {
+      def apply(isInterface: Boolean): Variance =
+        if (isInterface) Interface else Class
+
+      def unapply(v: Variance): Some[Boolean] =
+        Some(v match {
+          case Class => false
+          case Interface => true
+        })
+    }
   }
 
 

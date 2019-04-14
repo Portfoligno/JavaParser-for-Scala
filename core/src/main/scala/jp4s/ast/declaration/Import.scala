@@ -7,6 +7,7 @@ object Import {
   case object Plain extends Variance(false)
   case object Static extends Variance(true)
 
+
   def apply(
     variance: Import.Variance,
     name: Nejl[Identifier],
@@ -20,11 +21,19 @@ object Import {
     Boolean
   )] =
     Some((
-      if (i.isStatic) Static else Plain,
+      Variance(i.isStatic),
       identifiers(i.getName),
       i.isAsterisk
     ))
 
+
+  object Variance {
+    def apply(isStatic: Boolean): Variance =
+      if (isStatic) Static else Plain
+
+    def unapply(v: Variance): Some[Boolean] =
+      Some(v.isStatic)
+  }
 
   sealed abstract class Variance(private val isStatic: Boolean) {
     def apply(

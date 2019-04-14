@@ -9,6 +9,7 @@ object Parameter {
   case object Plain extends Variance(false)
   case object VarArgs extends Variance(true)
 
+
   def apply(
     variance: Parameter.Variance,
     modifiers: JavaList[Modifier],
@@ -28,7 +29,7 @@ object Parameter {
     Identifier
   )] =
     Some((
-      if (p.isVarArgs) VarArgs else Plain,
+      Variance(p.isVarArgs),
       p.getModifiers,
       p.getAnnotations,
       p.getType,
@@ -36,6 +37,14 @@ object Parameter {
       identifier(p.getName)
     ))
 
+
+  object Variance {
+    def apply(isVarArgs: Boolean): Variance =
+      if (isVarArgs) VarArgs else Plain
+
+    def unapply(v: Variance): Some[Boolean] =
+      Some(v.isVarArgs)
+  }
 
   sealed abstract class Variance(private val isVarArgs: Boolean) {
     def apply(
