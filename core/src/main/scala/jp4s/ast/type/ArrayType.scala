@@ -33,8 +33,8 @@ object ArrayType {
 
     def unapply(t: ArrayType): Option[(
       Type,
-        JavaList[Annotation]
-      )] =
+      JavaList[Annotation]
+    )] =
       if (t.getOrigin == origin) {
         ArrayType.unapply(t)
       } else {

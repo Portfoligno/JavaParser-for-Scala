@@ -7,18 +7,6 @@ import nejc4s.base.{Absent, JavaList, Optional, Present}
 object WildcardType {
   import jp4s.syntax.optional._
 
-  private
-  def wildcardType(
-    extendedType: Optional[ReferenceType],
-    superType: Optional[ReferenceType],
-    annotations: JavaList[Annotation]
-  ): WildcardType =
-    new WildcardType(
-      extendedType.orElseNull,
-      superType.orElseNull,
-      nodeList(annotations)
-    )
-
   def apply(
     typeBound: Optional[Either[ReferenceType, ReferenceType]],
     annotations: JavaList[Annotation]
@@ -54,4 +42,17 @@ object WildcardType {
       },
       t.getAnnotations
     ))
+
+
+  private
+  def wildcardType(
+    extendedType: Optional[ReferenceType],
+    superType: Optional[ReferenceType],
+    annotations: JavaList[Annotation]
+  ): WildcardType =
+    new WildcardType(
+      extendedType.orElseNull,
+      superType.orElseNull,
+      nodeList(annotations)
+    )
 }
