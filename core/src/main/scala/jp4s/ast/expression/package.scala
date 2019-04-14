@@ -2,6 +2,7 @@ package jp4s.ast
 
 import com.github.javaparser.ast.expr._
 import com.github.javaparser.ast.nodeTypes.SwitchNode
+import jp4s.astx.expression.PrimitiveLiteral
 
 package object expression {
   type Annotation = AnnotationExpr
@@ -11,7 +12,10 @@ package object expression {
   type ArrayInitializer = ArrayInitializerExpr
   type Assign = AssignExpr
   type Binary = BinaryExpr
+
   type BooleanLiteral = BooleanLiteralExpr
+  val BooleanLiteral: PrimitiveLiteral.Boolean.type = PrimitiveLiteral.Boolean
+
   type Cast = CastExpr
   type CharLiteral = CharLiteralExpr
   type ClassAccess = ClassExpr
