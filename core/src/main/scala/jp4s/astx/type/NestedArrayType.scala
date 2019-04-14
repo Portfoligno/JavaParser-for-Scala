@@ -12,7 +12,7 @@ object NestedArrayType {
   def apply(
     `type`: Type, dimensions: JavaList[JavaList[Annotation]]
   )(
-    implicit factory: ArrayType.Variance
+    implicit variance: ArrayType.Variance
   ): Type = {
     @tailrec
     def wrap(
@@ -21,7 +21,7 @@ object NestedArrayType {
     ): Type =
       dimensions match {
         case Seq(annotations, remainingDimensions @ _*) =>
-          wrap(factory(current, annotations), remainingDimensions)
+          wrap(variance(current, annotations), remainingDimensions)
 
         case _ =>
           current
@@ -31,7 +31,7 @@ object NestedArrayType {
   }
 
   def unapply(`type`: Type)(
-    implicit factory: ArrayType.Variance
+    implicit variance: ArrayType.Variance
   ): Some[(Type, JavaList[JavaList[Annotation]])] = {
     @tailrec
     def unwrap(
@@ -39,7 +39,7 @@ object NestedArrayType {
       dimensions: List[JavaList[Annotation]]
     ): (Type, JavaList[JavaList[Annotation]]) =
       current match {
-        case factory(componentType, annotations) =>
+        case variance(componentType, annotations) =>
           unwrap(componentType, annotations :: dimensions)
 
         case _ =>
