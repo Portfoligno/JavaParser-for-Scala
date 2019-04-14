@@ -1,12 +1,12 @@
 package jp4s.ast
 package statement
 
-import nejc4s.base.JavaList
-
 object Block {
-  def apply(statements: JavaList[Statement]): Block =
-    new Block(nodeList(statements))
+  import scala.collection.JavaConverters._
 
-  def unapply(b: Block): Some[JavaList[Statement]] =
-    Some(b.getStatements)
+  def apply(statements: Statement*): Block =
+    new Block(nodeList(statements.asJava))
+
+  def unapplySeq(b: Block): Some[Seq[Statement]] =
+    Some(b.getStatements.asScala)
 }
