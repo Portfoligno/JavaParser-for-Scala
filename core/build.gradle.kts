@@ -14,7 +14,7 @@ dependencies {
   api("org.scala-lang:scala-library:2.12.8")
 
   api("com.github.javaparser:javaparser-core:3.13.6")
-  api("io.github.portfoligno:non-empty-java-collections-for-scala:1.0.2")
+  api("io.github.portfoligno:non-empty-java-collections-for-scala:1.0.3")
 }
 
 tasks.withType<ScalaCompile> {
