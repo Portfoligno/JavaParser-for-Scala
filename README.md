@@ -2,6 +2,35 @@
 https://jitpack.io/#io.github.portfoligno/javaparser-for-scala/$VERSION)
 # JavaParser for Scala
 
+This library implements extractor objects along with `apply` factory methods
+for the [JavaParser](https://github.com/javaparser/javaparser) AST.
+
+For example:
+
+```scala
+// package jp4s.ast.statement
+type If = IfStmt // com.github.javaparser.ast.stmt.IfStmt
+
+object If {
+  def apply(condition: Expression, thenStmt: Statement, elseStmt: Optional[Statement]): If =
+    new If(condition, thenStmt, elseStmt.orElseNull)
+
+  def unapply(i: If): Some[(Expression, Statement, Optional[Statement])] =
+    Some((i.getCondition, i.getThenStmt, i.getElseStmt))
+}
+```
+
+Generally, we prefer a shortened name of the factory object
+to improve code conciseness for matching with multi-level patterns.
+There are suffices like  `Stmt` and `Expr` in the original AST classes
+that are dropped to form shorter names.
+You may see below for a detailed example.
+
+Type aliases under the same names
+are also provided together as 1-to-1 mapping to the original AST types
+in a manner to minimize issues in importing factory objects
+while it is still necessary to refer to the original AST types.
+
 
 Project setup
 ----
