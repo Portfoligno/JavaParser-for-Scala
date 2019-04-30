@@ -24,7 +24,7 @@ package object ast {
   object Identifier {
     private[ast] trait Tag extends Any
 
-    private
+    private[jp4s]
     def isIdentifier(s: String): Boolean =
       s.nonEmpty &&
         Character.isJavaIdentifierStart(s.head) &&
