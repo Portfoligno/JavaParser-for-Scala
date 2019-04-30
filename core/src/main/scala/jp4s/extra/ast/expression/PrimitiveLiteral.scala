@@ -4,17 +4,16 @@ import com.github.javaparser.utils.StringEscapeUtils
 import jp4s.ast.expression._
 
 object PrimitiveLiteral {
-  def unapply(l: Literal): Some[AnyVal] =
-    Some(l match {
-      case Boolean(x) => x
-      case Char(x) => x
-      case Int(x) => x
-      case Long(x) => x
-      case Float(x) => x
-      case Double(x) => x
-      case r @ _ =>
-        throw new IllegalArgumentException(String.valueOf(r))
-    })
+  def unapply(l: Literal): Option[AnyVal] =
+    l match {
+      case Boolean(x) => Some(x)
+      case Char(x) => Some(x)
+      case Int(x) => Some(x)
+      case Long(x) => Some(x)
+      case Float(x) => Some(x)
+      case Double(x) => Some(x)
+      case _ => None
+    }
 
 
   case object Boolean extends Type[Boolean, BooleanLiteral] {
