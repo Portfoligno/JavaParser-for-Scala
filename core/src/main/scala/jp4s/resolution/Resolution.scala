@@ -19,7 +19,7 @@ object Resolution {
         try {
           Right(a.resolve)
         } catch {
-          case e: UnsolvedSymbolException | IllegalStateException =>
+          case e @ (_: UnsolvedSymbolException | _: IllegalStateException) =>
             Left(e)
         }
   }
