@@ -3,8 +3,8 @@ package declaration
 
 import com.github.javaparser.ast.NodeList
 import com.github.javaparser.ast.body.VariableDeclarator
-import jp4s.ast.`type`.{ArrayType, PrimitiveType, Type}
-import jp4s.ast.expression.{Annotation, Expression}
+import jp4s.ast.`type`.{ArrayDimensions, ArrayType, PrimitiveType, Type}
+import jp4s.ast.expression.Expression
 import jp4s.extra.ast.`type`.NestedArrayType
 import nejc4s.alias.Nejl
 import nejc4s.base.{JavaCollection, JavaList, Optional}
@@ -18,7 +18,7 @@ object Variable {
     ArrayType.OnName
 
   def apply(
-    arrayDimensions: JavaList[JavaList[Annotation]],
+    arrayDimensions: ArrayDimensions,
     name: Identifier,
     initializer: Optional[Expression]
   ): Variable =
@@ -32,7 +32,7 @@ object Variable {
     )
 
   def unapply(v: Variable): Some[(
-    JavaList[JavaList[Annotation]],
+    ArrayDimensions,
     Identifier,
     Optional[Expression]
   )] =

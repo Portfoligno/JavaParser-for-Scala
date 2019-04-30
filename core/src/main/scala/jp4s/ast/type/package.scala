@@ -1,6 +1,10 @@
 package jp4s.ast
 
+import jp4s.ast.expression.Annotation
+import nejc4s.base.JavaList
+
 package object `type` {
+  type ArrayDimensions = JavaList[JavaList[Annotation]]
   type ArrayType = com.github.javaparser.ast.`type`.ArrayType
   type ClassOrInterfaceType = com.github.javaparser.ast.`type`.ClassOrInterfaceType
   type ImplicitType = com.github.javaparser.ast.`type`.UnknownType

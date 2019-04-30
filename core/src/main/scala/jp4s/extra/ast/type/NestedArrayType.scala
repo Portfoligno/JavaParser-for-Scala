@@ -1,6 +1,6 @@
 package jp4s.extra.ast.`type`
 
-import jp4s.ast.`type`.{ArrayType, Type}
+import jp4s.ast.`type`.{ArrayDimensions, ArrayType, Type}
 import jp4s.ast.expression.Annotation
 import nejc4s.base.JavaList
 
@@ -10,7 +10,7 @@ object NestedArrayType {
   import scala.collection.JavaConverters._
 
   def apply(
-    `type`: Type, dimensions: JavaList[JavaList[Annotation]]
+    `type`: Type, dimensions: ArrayDimensions
   )(
     implicit variance: ArrayType.Variance
   ): Type = {
@@ -32,12 +32,12 @@ object NestedArrayType {
 
   def unapply(`type`: Type)(
     implicit variance: ArrayType.Variance
-  ): Some[(Type, JavaList[JavaList[Annotation]])] = {
+  ): Some[(Type, ArrayDimensions)] = {
     @tailrec
     def unwrap(
       current: Type,
       dimensions: List[JavaList[Annotation]]
-    ): (Type, JavaList[JavaList[Annotation]]) =
+    ): (Type, ArrayDimensions) =
       current match {
         case variance(componentType, annotations) =>
           unwrap(componentType, annotations :: dimensions)
