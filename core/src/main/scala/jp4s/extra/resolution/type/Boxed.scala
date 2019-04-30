@@ -1,4 +1,4 @@
-package jp4s.extra.resolution
+package jp4s.extra.resolution.`type`
 
 import com.github.javaparser.ast.`type`.PrimitiveType.Primitive
 import com.github.javaparser.resolution.types.{ResolvedPrimitiveType, ResolvedReferenceType}
