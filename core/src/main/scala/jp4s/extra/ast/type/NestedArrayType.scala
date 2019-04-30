@@ -1,4 +1,4 @@
-package jp4s.astx.`type`
+package jp4s.extra.ast.`type`
 
 import jp4s.ast.`type`.{ArrayType, Type}
 import jp4s.ast.expression.Annotation

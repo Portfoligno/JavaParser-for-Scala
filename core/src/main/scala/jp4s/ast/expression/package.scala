@@ -2,7 +2,7 @@ package jp4s.ast
 
 import com.github.javaparser.ast.expr._
 import com.github.javaparser.ast.nodeTypes.SwitchNode
-import jp4s.astx.expression.PrimitiveLiteral
+import jp4s.extra.ast.expression.PrimitiveLiteral
 
 package object expression {
   type Annotation = AnnotationExpr

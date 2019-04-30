@@ -1,4 +1,4 @@
-package jp4s.astx.expression
+package jp4s.extra.ast.expression
 
 import com.github.javaparser.utils.StringEscapeUtils
 import jp4s.ast.expression._

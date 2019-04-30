@@ -5,7 +5,7 @@ import com.github.javaparser.ast.NodeList
 import com.github.javaparser.ast.body.VariableDeclarator
 import jp4s.ast.`type`.{ArrayType, Type}
 import jp4s.ast.expression.{Annotation, Expression}
-import jp4s.astx.`type`.NestedArrayType
+import jp4s.extra.ast.`type`.NestedArrayType
 import nejc4s.alias.Nejl
 import nejc4s.base.{JavaCollection, JavaList, Optional}
 
