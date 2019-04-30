@@ -3,66 +3,46 @@ package declaration
 
 import com.github.javaparser.ast.NodeList
 import com.github.javaparser.ast.body.VariableDeclarator
-import jp4s.ast.`type`.{ArrayType, Type}
+import jp4s.ast.`type`.{ArrayType, PrimitiveType, Type}
 import jp4s.ast.expression.{Annotation, Expression}
 import jp4s.extra.ast.`type`.NestedArrayType
 import nejc4s.alias.Nejl
 import nejc4s.base.{JavaCollection, JavaList, Optional}
 
-sealed trait Variable {
-  def arrayDimensions: JavaList[JavaList[Annotation]]
-
-  def name: Identifier
-
-  def initializer: Optional[Expression]
-}
-
 object Variable {
+  import jp4s.syntax.optional._
+  import jp4s.syntax.variable._
+
+  private
+  implicit def arrayTypeVariance: ArrayType.Variance =
+    ArrayType.OnName
+
   def apply(
     arrayDimensions: JavaList[JavaList[Annotation]],
     name: Identifier,
     initializer: Optional[Expression]
   ): Variable =
-    Pure(arrayDimensions, name, initializer)
+    new Variable(
+      NestedArrayType(
+        PrimitiveType.Boolean(JavaList()), // Use `boolean` as a placeholder
+        arrayDimensions
+      ),
+      simpleNameNode(name),
+      initializer.orElseNull
+    )
 
   def unapply(v: Variable): Some[(
     JavaList[JavaList[Annotation]],
     Identifier,
     Optional[Expression]
   )] =
-    Some((v.arrayDimensions, v.name, v.initializer))
-
-
-
-  private
-  implicit def arrayTypeVariance: ArrayType.Variance =
-    ArrayType.OnName
-
-  private
-  case class Pure(
-    arrayDimensions: JavaList[JavaList[Annotation]],
-    name: Identifier,
-    initializer: Optional[Expression]
-  ) extends Variable
-
-  private
-  case class ByNode(v: VariableDeclarator) extends Variable {
-    override
-    def arrayDimensions: JavaList[JavaList[Annotation]] =
-      NestedArrayType.unapply(v.getType).get._2
-
-    override
-    def name: Identifier =
-      identifier(v.getName)
-
-    override
-    def initializer: Optional[Expression] =
+    Some((
+      v.arrayDimensions,
+      identifier(v.getName),
       v.getInitializer
-  }
+    ))
 
 
-
-  import jp4s.syntax.optional._
 
   import scala.collection.JavaConverters._
   import scala.collection.convert.ImplicitConversionsToScala._
@@ -95,8 +75,8 @@ object Variable {
             .map(v =>
               new VariableDeclarator(
                 NestedArrayType(`type`, v.arrayDimensions),
-                simpleNameNode(v.name),
-                v.initializer.orElseNull
+                v.getName,
+                v.getInitializer.orElseNull
               )
             )
             .asJava
@@ -111,6 +91,6 @@ object Variable {
       with JavaCollection[Variable] {
     protected
     override def delegate: JavaList[Variable] =
-      (source.view.map(ByNode): Seq[Variable]).asJava
+      source
   }
 }
