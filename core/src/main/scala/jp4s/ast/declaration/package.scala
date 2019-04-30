@@ -26,59 +26,50 @@ package object declaration {
 
 
   object ClassOrInterface {
-    sealed trait Variance
-
     object Variance {
       def apply(isInterface: Boolean): Variance =
         if (isInterface) Interface else Class
 
       def unapply(v: Variance): Some[Boolean] =
-        Some(v match {
-          case Class => false
-          case Interface => true
-        })
+        Some(v.isInterface)
+    }
+
+    sealed abstract class Variance(private val isInterface: Boolean) {
+      private[declaration]
+      type Repr <: ClassOrInterface
+
+
+      def fromClassOrInterface(c: ClassOrInterface): Option[Repr] =
+        if (c.isInterface ^ isInterface) {
+          None
+        } else {
+          Some(c.asInstanceOf[Repr])
+        }
+
+      def unsafeFromClassOrInterface(c: ClassOrInterface): Repr =
+        if (c.isInterface ^ isInterface) {
+          throw new IllegalArgumentException(String.valueOf(c))
+        } else {
+          c.asInstanceOf[Repr]
+        }
     }
   }
 
 
   type Class <: ClassOrInterfaceDeclaration with Class.Tag
 
-  case object Class extends ClassFactory with ClassOrInterface.Variance {
+  case object Class extends ClassOrInterface.Variance(false) with ClassFactory {
     private[ast] trait Tag extends Any
 
-    def fromClassOrInterface(c: ClassOrInterface): Option[Class] =
-      if (!c.isInterface) {
-        Some(c.asInstanceOf[Class])
-      } else {
-        None
-      }
-
-    def unsafeFromClassOrInterface(c: ClassOrInterface): Class =
-      if (!c.isInterface) {
-        c.asInstanceOf[Class]
-      } else {
-        throw new IllegalArgumentException(String.valueOf(c))
-      }
+    private[declaration] override type Repr = Class
   }
 
 
   type Interface <: ClassOrInterfaceDeclaration with Interface.Tag
 
-  case object Interface extends InterfaceFactory with ClassOrInterface.Variance {
+  case object Interface extends ClassOrInterface.Variance(true) with InterfaceFactory {
     private[ast] trait Tag extends Any
 
-    def fromClassOrInterface(c: ClassOrInterface): Option[Interface] =
-      if (c.isInterface) {
-        Some(c.asInstanceOf[Interface])
-      } else {
-        None
-      }
-
-    def unsafeFromClassOrInterface(c: ClassOrInterface): Interface =
-      if (c.isInterface) {
-        c.asInstanceOf[Interface]
-      } else {
-        throw new IllegalArgumentException(String.valueOf(c))
-      }
+    private[declaration] override type Repr = Interface
   }
 }
