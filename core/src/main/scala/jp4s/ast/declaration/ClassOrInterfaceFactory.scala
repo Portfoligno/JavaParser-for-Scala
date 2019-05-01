@@ -16,7 +16,7 @@ trait ClassOrInterfaceFactory {
       JavaList[ClassOrInterfaceType],
       (Optional[ClassOrInterfaceType], JavaList[ClassOrInterfaceType])
     ],
-    members: JavaList[Body]
+    members: JavaList[Member]
   ): ClassOrInterface =
     superTypes.fold(
       Interface(modifiers, annotations, name, typeParameters, _, members),
@@ -32,7 +32,7 @@ trait ClassOrInterfaceFactory {
       JavaList[ClassOrInterfaceType],
       (Optional[ClassOrInterfaceType], JavaList[ClassOrInterfaceType])
     ],
-    JavaList[Body]
+    JavaList[Member]
   )] =
     Some(c match {
       case Class(modifiers, annotations, name, typeParameters, superTypes, members) =>

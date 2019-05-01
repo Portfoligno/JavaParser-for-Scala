@@ -9,7 +9,7 @@ object Enum {
     annotations: JavaList[Annotation],
     name: Identifier,
     arguments: JavaList[Expression],
-    classBody: JavaList[Body]
+    classBody: JavaList[Member]
   ): Enum =
     new Enum(
       nodeList(annotations),
@@ -22,7 +22,7 @@ object Enum {
     JavaList[Annotation],
     Identifier,
     JavaList[Expression],
-    JavaList[Body]
+    JavaList[Member]
   )] =
     Some((
       c.getAnnotations,

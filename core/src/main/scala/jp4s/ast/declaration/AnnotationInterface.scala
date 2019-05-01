@@ -9,7 +9,7 @@ object AnnotationInterface {
     modifiers: JavaList[Modifier],
     annotations: JavaList[Annotation],
     name: Identifier,
-    members: JavaList[Body]
+    members: JavaList[Member]
   ): AnnotationInterface =
     new AnnotationInterface(
       nodeList(modifiers),
@@ -22,7 +22,7 @@ object AnnotationInterface {
     JavaList[Modifier],
     JavaList[Annotation],
     Identifier,
-    JavaList[Body]
+    JavaList[Member]
   )] =
     Some((a.getModifiers, a.getAnnotations, identifier(a.getName), a.getMembers))
 }

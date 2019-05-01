@@ -12,7 +12,7 @@ object EnumClass {
     name: Identifier,
     implementedTypes: JavaList[ClassOrInterfaceType],
     entries: JavaList[Enum],
-    members: JavaList[Body]
+    members: JavaList[Member]
   ): EnumClass =
     new EnumClass(
       nodeList(modifiers),
@@ -29,7 +29,7 @@ object EnumClass {
     Identifier,
     JavaList[ClassOrInterfaceType],
     JavaList[Enum],
-    JavaList[Body]
+    JavaList[Member]
   )] =
     Some((
       e.getModifiers,

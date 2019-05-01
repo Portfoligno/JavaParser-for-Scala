@@ -14,7 +14,7 @@ trait ClassFactory {
     name: Identifier,
     typeParameters: JavaList[TypeParameter],
     superTypes: (Optional[ClassOrInterfaceType], JavaList[ClassOrInterfaceType]),
-    members: JavaList[Body]
+    members: JavaList[Member]
   ): Class =
     Class.unsafeFromClassOrInterface(new ClassOrInterface(
       nodeList(modifiers),
@@ -36,7 +36,7 @@ trait ClassFactory {
     Identifier,
     JavaList[TypeParameter],
     (Optional[ClassOrInterfaceType], JavaList[ClassOrInterfaceType]),
-    JavaList[Body]
+    JavaList[Member]
   )] =
     if (c.isInterface) {
       None
