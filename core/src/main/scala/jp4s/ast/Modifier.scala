@@ -58,6 +58,8 @@ object Modifier {
   }
 
   sealed abstract class Keyword(private val enum: KeywordEnum) {
+    lookup += enum -> this
+
     def apply(): Modifier =
       new Modifier(enum)
 
