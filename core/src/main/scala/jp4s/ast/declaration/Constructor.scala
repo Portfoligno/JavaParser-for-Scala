@@ -7,6 +7,8 @@ import jp4s.ast.statement.Block
 import nejc4s.base.{JavaList, Optional}
 
 object Constructor {
+  import jp4s.syntax.optional._
+
   def apply(
     modifiers: JavaList[Modifier],
     annotations: JavaList[Annotation],
@@ -15,7 +17,7 @@ object Constructor {
     parameters: JavaList[Parameter],
     thrownExceptions: JavaList[ReferenceType],
     body: Block,
-    receiverParameter: ReceiverParameter
+    receiverParameter: Optional[ReceiverParameter]
   ): Constructor =
     new Constructor(
       nodeList(modifiers),
@@ -25,7 +27,7 @@ object Constructor {
       nodeList(parameters),
       nodeList(thrownExceptions),
       body,
-      receiverParameter
+      receiverParameter.orElseNull
     )
 
   def unapply(c: Constructor): Some[(
