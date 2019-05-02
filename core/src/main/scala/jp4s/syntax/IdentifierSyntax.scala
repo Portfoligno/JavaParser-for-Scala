@@ -50,7 +50,7 @@ object IdMarco {
         val invalid = parts.filterNot(isIdentifier)
 
         if (invalid.isEmpty) {
-          val constants = parts.map(Constant(_)).view
+          val constants = parts.map(s => Literal(Constant(s))).view
 
           c.Expr(q"""
             new $IdsInterpolator(
