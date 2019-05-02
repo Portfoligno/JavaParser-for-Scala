@@ -65,7 +65,7 @@ object IdMarco {
                 s"$a is not an identifier"
 
               case _ =>
-                s"${invalid.init.mkString("", ", ", " and ")}${invalid.last} are not identifiers"
+                invalid.init.mkString("", ", ", s" and ${invalid.last} are not identifiers")
             }
           )
         }
