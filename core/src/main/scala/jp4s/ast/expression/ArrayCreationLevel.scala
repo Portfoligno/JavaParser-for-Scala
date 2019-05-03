@@ -4,7 +4,7 @@ package expression
 import nejc4s.base.{JavaList, Optional}
 
 object ArrayCreationLevel {
-  import jp4s.syntax.optional._
+  import nejc4s.syntax.optional._
 
   def apply(
     dimension: Optional[Expression],

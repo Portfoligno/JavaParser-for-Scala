@@ -153,7 +153,7 @@ package object ast {
 
   private[ast]
   object NameNode {
-    import jp4s.syntax.optional._
+    import nejc4s.syntax.optional._
 
     def apply(qualifier: Optional[NameNode], identifier: Identifier): NameNode =
       new NameNode(qualifier.orElseNull, identifier)

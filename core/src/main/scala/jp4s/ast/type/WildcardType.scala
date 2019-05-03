@@ -5,7 +5,7 @@ import jp4s.ast.expression.Annotation
 import nejc4s.base.{Absent, JavaList, Optional, Present}
 
 object WildcardType {
-  import jp4s.syntax.optional._
+  import nejc4s.syntax.optional._
 
   def apply(
     typeBound: Optional[Either[ReferenceType, ReferenceType]],

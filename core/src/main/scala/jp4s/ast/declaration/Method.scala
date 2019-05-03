@@ -7,7 +7,7 @@ import jp4s.ast.statement.Block
 import nejc4s.base.{JavaList, Optional}
 
 object Method {
-  import jp4s.syntax.optional._
+  import nejc4s.syntax.optional._
 
   def apply(
     modifiers: JavaList[Modifier],

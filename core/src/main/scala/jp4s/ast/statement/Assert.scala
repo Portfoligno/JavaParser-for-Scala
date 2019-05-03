@@ -4,7 +4,7 @@ import jp4s.ast.expression.Expression
 import nejc4s.base.Optional
 
 object Assert {
-  import jp4s.syntax.optional._
+  import nejc4s.syntax.optional._
 
   def apply(check: Expression, message: Optional[Expression]): Assert =
     new Assert(check, message.orElseNull)

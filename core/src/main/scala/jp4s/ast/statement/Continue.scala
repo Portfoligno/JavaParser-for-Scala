@@ -4,7 +4,7 @@ package statement
 import nejc4s.base.Optional
 
 object Continue {
-  import jp4s.syntax.optional._
+  import nejc4s.syntax.optional._
 
   def apply(label: Optional[Identifier]): Continue =
     new Continue(

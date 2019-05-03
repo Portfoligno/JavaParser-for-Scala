@@ -10,7 +10,7 @@ import nejc4s.alias.Nejl
 import nejc4s.base.{JavaCollection, JavaList, Optional}
 
 object Variable {
-  import jp4s.syntax.optional._
+  import nejc4s.syntax.optional._
   import jp4s.syntax.variable._
 
   private

@@ -6,7 +6,7 @@ import jp4s.ast.declaration.Member
 import nejc4s.base.{JavaList, Optional}
 
 object ObjectCreation {
-  import jp4s.syntax.optional._
+  import nejc4s.syntax.optional._
 
   def apply(
     scope: Optional[Expression],

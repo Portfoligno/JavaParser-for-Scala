@@ -5,7 +5,7 @@ import jp4s.ast.`type`.Type
 import nejc4s.base.{JavaList, Optional}
 
 object MethodCall {
-  import jp4s.syntax.optional._
+  import nejc4s.syntax.optional._
 
   def apply(
     scope: Optional[Expression],

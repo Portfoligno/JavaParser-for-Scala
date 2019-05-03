@@ -5,7 +5,7 @@ import jp4s.ast.module.Module
 import nejc4s.base.{JavaList, Optional}
 
 object CompilationUnit {
-  import jp4s.syntax.optional._
+  import nejc4s.syntax.optional._
 
   def apply(
     packageDeclaration: Optional[Package],

@@ -4,7 +4,7 @@ package expression
 import nejc4s.base.Absent
 
 object FieldAccess {
-  import jp4s.syntax.optional._
+  import nejc4s.syntax.optional._
 
   def apply(
     scope: Expression,

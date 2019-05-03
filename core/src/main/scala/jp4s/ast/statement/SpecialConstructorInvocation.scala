@@ -10,7 +10,7 @@ case object ThisInvocation extends SpecialConstructorInvocation.Variance(true)
 case object SuperInvocation extends SpecialConstructorInvocation.Variance(false)
 
 object SpecialConstructorInvocation {
-  import jp4s.syntax.optional._
+  import nejc4s.syntax.optional._
 
   def apply(
     variance: SpecialConstructorInvocation.Variance,
@@ -43,7 +43,7 @@ object SpecialConstructorInvocation {
   }
 
   sealed abstract class Variance(private val isThis: Boolean) {
-    import jp4s.syntax.optional._
+    import nejc4s.syntax.optional._
 
     def apply(
       typeArguments: Optional[JavaList[Type]],

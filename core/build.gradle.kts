@@ -15,7 +15,7 @@ dependencies {
   compileOnly("org.scala-lang", "scala-reflect", "2.12.8")
 
   api("com.github.javaparser", "javaparser-core", "3.13.6")
-  api("io.github.portfoligno.non-empty-java-collections-for-scala", "nejc4s_2.12", "1.0.6")
+  api("io.github.portfoligno.non-empty-java-collections-for-scala", "nejc4s_2.12", "1.3.0-SNAP2")
 
   testImplementation("junit", "junit", "4.12")
   testImplementation("org.scalatest", "scalatest_2.12", "3.0.7")

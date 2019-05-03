@@ -6,7 +6,7 @@ import nejc4s.alias.Nejl
 import nejc4s.base.Optional
 
 object ArrayCreation {
-  import jp4s.syntax.optional._
+  import nejc4s.syntax.optional._
 
   def apply(
     elementType: Type,
