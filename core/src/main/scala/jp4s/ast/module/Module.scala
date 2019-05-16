@@ -2,14 +2,14 @@ package jp4s.ast
 package module
 
 import jp4s.ast.expression.Annotation
-import nejc4s.alias.Nejl
+import nejc4s.NonEmptyJavaList
 import nejc4s.base.JavaList
 
 object Module {
   object Plain {
     def apply(
       annotations: JavaList[Annotation],
-      name: Nejl[Identifier],
+      name: NonEmptyJavaList[Identifier],
       directives: JavaList[ModuleDirective]
     ): Module =
       new Module(
@@ -21,7 +21,7 @@ object Module {
 
     def unapply(m: Module): Option[(
       JavaList[Annotation],
-      Nejl[Identifier],
+      NonEmptyJavaList[Identifier],
       JavaList[ModuleDirective]
     )] =
       if (!m.isOpen) {
@@ -38,7 +38,7 @@ object Module {
   object Open {
     def apply(
       annotations: JavaList[Annotation],
-      name: Nejl[Identifier],
+      name: NonEmptyJavaList[Identifier],
       directives: JavaList[ModuleDirective]
     ): Module =
       new Module(
@@ -50,7 +50,7 @@ object Module {
 
     def unapply(m: Module): Option[(
       JavaList[Annotation],
-      Nejl[Identifier],
+      NonEmptyJavaList[Identifier],
       JavaList[ModuleDirective]
     )] =
       if (m.isOpen) {

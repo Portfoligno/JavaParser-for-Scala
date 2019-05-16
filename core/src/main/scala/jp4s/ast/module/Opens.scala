@@ -1,13 +1,13 @@
 package jp4s.ast
 package module
 
-import nejc4s.alias.Nejl
+import nejc4s.NonEmptyJavaList
 import nejc4s.base.JavaList
 
 object Opens {
   def apply(
-    name: Nejl[Identifier],
-    moduleNames: JavaList[Nejl[Identifier]]
+    name: NonEmptyJavaList[Identifier],
+    moduleNames: JavaList[NonEmptyJavaList[Identifier]]
   ): Opens =
     new Opens(
       nameNode(name),
@@ -15,8 +15,8 @@ object Opens {
     )
 
   def unapply(e: Opens): Some[(
-    Nejl[Identifier],
-    JavaList[Nejl[Identifier]]
+    NonEmptyJavaList[Identifier],
+    JavaList[NonEmptyJavaList[Identifier]]
   )] =
     Some((
       identifiers(e.getName),

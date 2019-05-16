@@ -3,7 +3,7 @@ package expression
 
 import jp4s.ast.`type`.Type
 import jp4s.ast.declaration.Variable
-import nejc4s.alias.Nejl
+import nejc4s.NonEmptyJavaList
 import nejc4s.base.JavaList
 
 object Variables {
@@ -11,7 +11,7 @@ object Variables {
     modifiers: JavaList[Modifier],
     annotations: JavaList[Annotation],
     `type`: Type,
-    variables: Nejl[Variable]
+    variables: NonEmptyJavaList[Variable]
   ): Variables =
     new Variables(
       nodeList(modifiers),
@@ -26,7 +26,7 @@ object Variables {
     JavaList[Modifier],
     JavaList[Annotation],
     Type,
-    Nejl[Variable]
+    NonEmptyJavaList[Variable]
   )] =
     Some((
       v.getModifiers,

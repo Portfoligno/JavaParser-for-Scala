@@ -3,14 +3,14 @@ package declaration
 
 import jp4s.ast.`type`.Type
 import jp4s.ast.expression.Annotation
-import nejc4s.alias.Nejl
+import nejc4s.NonEmptyJavaList
 import nejc4s.base.JavaList
 
 object ReceiverParameter {
   def apply(
     annotations: JavaList[Annotation],
     `type`: Type,
-    name: Nejl[Identifier]
+    name: NonEmptyJavaList[Identifier]
   ): ReceiverParameter =
     new ReceiverParameter(
       nodeList(annotations),
@@ -21,7 +21,7 @@ object ReceiverParameter {
   def unapply(p: ReceiverParameter): Some[(
     JavaList[Annotation],
     Type,
-    Nejl[Identifier]
+    NonEmptyJavaList[Identifier]
   )] =
     Some((
       p.getAnnotations,

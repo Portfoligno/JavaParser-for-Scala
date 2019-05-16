@@ -6,7 +6,7 @@ import com.github.javaparser.ast.body.VariableDeclarator
 import jp4s.ast.`type`.{ArrayDimensions, ArrayType, PrimitiveType, Type}
 import jp4s.ast.expression.Expression
 import jp4s.extra.ast.`type`.NestedArrayType
-import nejc4s.alias.Nejl
+import nejc4s.NonEmptyJavaList
 import nejc4s.base.{JavaCollection, JavaList, Optional}
 
 object Variable {
@@ -52,11 +52,11 @@ object Variable {
     NestedArrayType.unapply(variables.iterator.next().getType).get._1
 
   private[ast]
-  def nejl(variables: NodeList[VariableDeclarator]): Nejl[Variable] =
+  def nejl(variables: NodeList[VariableDeclarator]): NonEmptyJavaList[Variable] =
     VariableNejlWrapper(variables)
 
   private[ast]
-  def nodeList(`type`: Type, variables: Nejl[Variable]): NodeList[VariableDeclarator] =
+  def nodeList(`type`: Type, variables: NonEmptyJavaList[Variable]): NodeList[VariableDeclarator] =
     variables match {
       case VariableNejlWrapper(source) if source
         .view
@@ -86,7 +86,7 @@ object Variable {
 
   private
   case class VariableNejlWrapper(source: NodeList[VariableDeclarator])
-    extends Nejl.UnsafeProxy[Variable]
+    extends NonEmptyJavaList.UnsafeProxy[Variable]
       with JavaList[Variable]
       with JavaCollection[Variable] {
     protected

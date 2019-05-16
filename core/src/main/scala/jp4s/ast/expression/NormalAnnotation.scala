@@ -1,12 +1,12 @@
 package jp4s.ast
 package expression
 
-import nejc4s.alias.Nejl
+import nejc4s.NonEmptyJavaList
 import nejc4s.base.JavaList
 
 object NormalAnnotation {
   def apply(
-    name: Nejl[Identifier],
+    name: NonEmptyJavaList[Identifier],
     pairs: JavaList[MemberValuePair]
   ): NormalAnnotation =
     new NormalAnnotation(
@@ -15,7 +15,7 @@ object NormalAnnotation {
     )
 
   def unapply(a: NormalAnnotation): Some[(
-    Nejl[Identifier],
+    NonEmptyJavaList[Identifier],
     JavaList[MemberValuePair]
   )] =
     Some((

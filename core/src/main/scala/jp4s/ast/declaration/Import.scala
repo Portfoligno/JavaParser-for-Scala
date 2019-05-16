@@ -1,7 +1,7 @@
 package jp4s.ast
 package declaration
 
-import nejc4s.alias.Nejl
+import nejc4s.NonEmptyJavaList
 
 object Import {
   case object Plain extends Variance(false)
@@ -10,14 +10,14 @@ object Import {
 
   def apply(
     variance: Import.Variance,
-    name: Nejl[Identifier],
+    name: NonEmptyJavaList[Identifier],
     isAsterisk: Boolean
   ): Import =
     variance(name, isAsterisk)
 
   def unapply(i: Import): Some[(
     Import.Variance,
-    Nejl[Identifier],
+    NonEmptyJavaList[Identifier],
     Boolean
   )] =
     Some((
@@ -37,7 +37,7 @@ object Import {
 
   sealed abstract class Variance(private val isStatic: Boolean) {
     def apply(
-      name: Nejl[Identifier],
+      name: NonEmptyJavaList[Identifier],
       isAsterisk: Boolean
     ): Import =
       new Import(
@@ -47,7 +47,7 @@ object Import {
       )
 
     def unapply(i: Import): Option[(
-      Nejl[Identifier],
+      NonEmptyJavaList[Identifier],
       Boolean
     )] =
       if (i.isStatic ^ isStatic) {

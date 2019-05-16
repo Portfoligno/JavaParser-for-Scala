@@ -3,7 +3,7 @@ package declaration
 
 import jp4s.ast.`type`.Type
 import jp4s.ast.expression.Annotation
-import nejc4s.alias.Nejl
+import nejc4s.NonEmptyJavaList
 import nejc4s.base.JavaList
 
 object Fields {
@@ -11,7 +11,7 @@ object Fields {
     modifiers: JavaList[Modifier],
     annotations: JavaList[Annotation],
     `type`: Type,
-    variables: Nejl[Variable]
+    variables: NonEmptyJavaList[Variable]
   ): Fields =
     new Fields(
       nodeList(modifiers),
@@ -26,7 +26,7 @@ object Fields {
     JavaList[Modifier],
     JavaList[Annotation],
     Type,
-    Nejl[Variable]
+    NonEmptyJavaList[Variable]
   )] =
     Some((
       f.getModifiers,

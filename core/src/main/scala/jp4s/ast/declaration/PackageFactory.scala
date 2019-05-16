@@ -2,14 +2,14 @@ package jp4s.ast
 package declaration
 
 import jp4s.ast.expression.Annotation
-import nejc4s.alias.Nejl
+import nejc4s.NonEmptyJavaList
 import nejc4s.base.JavaList
 
 private[declaration]
 trait PackageFactory {
   def apply(
     annotations: JavaList[Annotation],
-    name: Nejl[Identifier]
+    name: NonEmptyJavaList[Identifier]
   ): Package =
     new Package(
       nodeList(annotations),
@@ -18,7 +18,7 @@ trait PackageFactory {
 
   def unapply(p: Package): Some[(
     JavaList[Annotation],
-    Nejl[Identifier]
+    NonEmptyJavaList[Identifier]
   )] =
     Some((
       p.getAnnotations,

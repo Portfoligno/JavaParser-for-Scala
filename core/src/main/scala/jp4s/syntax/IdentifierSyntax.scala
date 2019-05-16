@@ -2,7 +2,7 @@ package jp4s.syntax
 
 import jp4s.ast.Identifier
 import jp4s.ast.Identifier.isIdentifier
-import nejc4s.alias.Nejl
+import nejc4s.NonEmptyJavaList
 
 import scala.language.experimental.macros
 import scala.reflect.macros.whitebox
@@ -54,7 +54,7 @@ object IdMarco {
 
           c.Expr(q"""
             new $IdsInterpolator(
-              _root_.nejc4s.alias.Nejl(..$constants).asInstanceOf[_root_.nejc4s.alias.Nejl[$Identifier]]
+              _root_.nejc4s.NonEmptyJavaList(..$constants).asInstanceOf[_root_.nejc4s.NonEmptyJavaList[$Identifier]]
             )
           """)
         } else {
@@ -85,11 +85,11 @@ class IdInterpolator(val value: Identifier) extends AnyVal {
     }
 }
 
-class IdsInterpolator(val value: Nejl[Identifier]) extends AnyVal {
-  def apply(unused: Nothing*): Nejl[Identifier] =
+class IdsInterpolator(val value: NonEmptyJavaList[Identifier]) extends AnyVal {
+  def apply(unused: Nothing*): NonEmptyJavaList[Identifier] =
     value
 
-  def unapplySeq(xs: Nejl[Identifier]): Option[Seq[Nothing]] =
+  def unapplySeq(xs: NonEmptyJavaList[Identifier]): Option[Seq[Nothing]] =
     if (xs == value) {
       Some(Seq.empty)
     } else {

@@ -1,11 +1,11 @@
 package jp4s.ast
 package expression
 
-import nejc4s.alias.Nejl
+import nejc4s.NonEmptyJavaList
 
 object SingleMemberAnnotation {
   def apply(
-    name: Nejl[Identifier],
+    name: NonEmptyJavaList[Identifier],
     memberValue: Expression
   ): SingleMemberAnnotation =
     new SingleMemberAnnotation(
@@ -14,7 +14,7 @@ object SingleMemberAnnotation {
     )
 
   def unapply(a: SingleMemberAnnotation): Some[(
-    Nejl[Identifier],
+    NonEmptyJavaList[Identifier],
     Expression
   )] =
     Some((

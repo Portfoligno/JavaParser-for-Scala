@@ -1,7 +1,7 @@
 package jp4s
 
 import com.github.javaparser.ast.NodeList
-import nejc4s.alias.Nejl
+import nejc4s.NonEmptyJavaList
 import nejc4s.base._
 
 import scala.annotation.tailrec
@@ -60,7 +60,7 @@ package object ast {
 
 
   private[ast]
-  def identifiers(n: NameNode): Nejl[Identifier] = {
+  def identifiers(n: NameNode): NonEmptyJavaList[Identifier] = {
     val builder = Vector.newBuilder[Identifier]
 
     @tailrec
@@ -74,11 +74,11 @@ package object ast {
     }
     go(n)
 
-    new Nejl.UnsafeWrapper(builder.result().view.reverse.asJava)
+    new NonEmptyJavaList.UnsafeWrapper(builder.result().view.reverse.asJava)
   }
 
   private[ast]
-  def nameNode(identifiers: Nejl[Identifier]): NameNode = {
+  def nameNode(identifiers: NonEmptyJavaList[Identifier]): NameNode = {
     val iterator = identifiers.iterator()
 
     @tailrec
@@ -94,7 +94,7 @@ package object ast {
 
 
   private[ast]
-  def nejl[A <: Node](nodeList: NodeList[A]): Nejl[A] =
+  def nejl[A <: Node](nodeList: NodeList[A]): NonEmptyJavaList[A] =
     NodeNejlWrapper(nodeList)
 
   private[ast]
@@ -118,7 +118,7 @@ package object ast {
   private[ast]
   def cons[A <: Node](head: A, tail: Seq[A]): NodeList[A] =
     tail.asJava match {
-      case NodeTailJavaListWrapper(source @ Nejl(`head`, _ @ _*)) =>
+      case NodeTailJavaListWrapper(source @ NonEmptyJavaList(`head`, _ @ _*)) =>
         source
 
       case _ =>
@@ -127,11 +127,11 @@ package object ast {
 
 
   private[ast]
-  def nameNodesAsIdentifiers(nameNodes: NodeList[NameNode]): JavaList[Nejl[Identifier]] =
+  def nameNodesAsIdentifiers(nameNodes: NodeList[NameNode]): JavaList[NonEmptyJavaList[Identifier]] =
     NameNodeNejlWrapper(nameNodes)
 
   private[ast]
-  def identifiersAsNameNodes(identifiers: JavaList[Nejl[Identifier]]): NodeList[NameNode] =
+  def identifiersAsNameNodes(identifiers: JavaList[NonEmptyJavaList[Identifier]]): NodeList[NameNode] =
     identifiers match {
       case NameNodeNejlWrapper(nodeList) =>
         nodeList
@@ -168,7 +168,7 @@ package object ast {
   case class NodeNejlWrapper[A <: Node](
     override protected val delegate: NodeList[A]
   )
-    extends Nejl.UnsafeProxy[A]
+    extends NonEmptyJavaList.UnsafeProxy[A]
       with JavaList[A]
       with JavaCollection[A]
 
@@ -188,11 +188,11 @@ package object ast {
   case class NameNodeNejlWrapper(
     source: NodeList[NameNode]
   )
-    extends Nejl.UnsafeProxy[Nejl[Identifier]]
-      with JavaList[Nejl[Identifier]]
-      with JavaCollection[Nejl[Identifier]] {
+    extends NonEmptyJavaList.UnsafeProxy[NonEmptyJavaList[Identifier]]
+      with JavaList[NonEmptyJavaList[Identifier]]
+      with JavaCollection[NonEmptyJavaList[Identifier]] {
     protected
-    override def delegate: JavaList[Nejl[Identifier]] =
+    override def delegate: JavaList[NonEmptyJavaList[Identifier]] =
       source.view.map(identifiers).asJava
   }
 }

@@ -2,7 +2,7 @@ package jp4s.ast
 package expression
 
 import jp4s.ast.`type`.Type
-import nejc4s.alias.Nejl
+import nejc4s.NonEmptyJavaList
 import nejc4s.base.Optional
 
 object ArrayCreation {
@@ -10,7 +10,7 @@ object ArrayCreation {
 
   def apply(
     elementType: Type,
-    levels: Nejl[ArrayCreationLevel],
+    levels: NonEmptyJavaList[ArrayCreationLevel],
     initializer: Optional[ArrayInitializer]
   ): ArrayCreation =
     new ArrayCreation(
@@ -21,7 +21,7 @@ object ArrayCreation {
 
   def unapply(c: ArrayCreation): Some[(
     Type,
-    Nejl[ArrayCreationLevel],
+    NonEmptyJavaList[ArrayCreationLevel],
     Optional[ArrayInitializer]
   )] =
     Some((c.getElementType, nejl(c.getLevels), c.getInitializer))
