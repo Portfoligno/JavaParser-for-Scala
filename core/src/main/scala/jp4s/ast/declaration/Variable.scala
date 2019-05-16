@@ -86,9 +86,7 @@ object Variable {
 
   private
   case class VariableNejlWrapper(source: NodeList[VariableDeclarator])
-    extends NonEmptyJavaList.UnsafeProxy[Variable]
-      with JavaList[Variable]
-      with JavaCollection[Variable] {
+    extends NonEmptyJavaList.UnsafeProxy[Variable] {
     protected
     override def delegate: JavaList[Variable] =
       source

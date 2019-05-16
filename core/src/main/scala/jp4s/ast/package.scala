@@ -169,16 +169,12 @@ package object ast {
     override protected val delegate: NodeList[A]
   )
     extends NonEmptyJavaList.UnsafeProxy[A]
-      with JavaList[A]
-      with JavaCollection[A]
 
   private
   case class NodeTailJavaListWrapper[A <: Node](
     source: NodeList[A]
   )
-    extends JavaList.UnsafeProxy[A]
-      with JavaList[A]
-      with JavaCollection[A] {
+    extends JavaList.UnsafeProxy[A] {
     protected
     override def delegate: JavaList[A] =
       source.view.drop(1).asJava
@@ -188,9 +184,7 @@ package object ast {
   case class NameNodeNejlWrapper(
     source: NodeList[NameNode]
   )
-    extends NonEmptyJavaList.UnsafeProxy[NonEmptyJavaList[Identifier]]
-      with JavaList[NonEmptyJavaList[Identifier]]
-      with JavaCollection[NonEmptyJavaList[Identifier]] {
+    extends NonEmptyJavaList.UnsafeProxy[NonEmptyJavaList[Identifier]] {
     protected
     override def delegate: JavaList[NonEmptyJavaList[Identifier]] =
       source.view.map(identifiers).asJava
